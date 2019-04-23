@@ -27,6 +27,7 @@ class Auth extends CI_Controller {
     $res = $this->Empleados_model->login($usuario, sha1($clave));
 
     if (!$res) {
+      $this->session->set_flashdata('error', 'El usuario y/o contrasena están erroneos>');
       redirect(base_url());
     } else {
       $data = array(

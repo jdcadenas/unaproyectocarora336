@@ -29,6 +29,11 @@
 
       <div class="login_wrapper">
         <div class="animate form login_form">
+          <?php if ($this->session->flashdata("error")): ?>
+            <div class="alert alert-danger">
+              <p><?php echo $this->session->flashdata("error"); ?></p>
+            </div>
+          <?php endif; ?>
           <section class="login_content">
             <form action="<?php echo base_url(); ?>auth/login" method="post">
               <h1>Acceso</h1>
