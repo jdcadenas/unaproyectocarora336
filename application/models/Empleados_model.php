@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Description of Empleados_model
+ *
+ * @author Usuario
+ */
+class Empleados_model extends CI_Model {
+
+  public function login($usuario, $clave) {
+    $this->db->where("usuario", $usuario);
+    $this->db->where("clave", $clave);
+    $resultado = $this->db->get("empleados");
+    if ($resultado->num_rows() > 0) {
+      return $resultado->row();
+    } else {
+      return false;
+    }
+  }
+
+}
