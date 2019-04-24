@@ -30,6 +30,7 @@ class Empleados_model extends CI_Model {
     $resultado=$this->db->get('empleados');
     return $resultado->row();
   }
+  
   public function save($data)
   {
     return $this->db->insert('empleados', $data);
