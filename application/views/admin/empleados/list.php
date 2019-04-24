@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
 
-    <a href="#" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar empleados</a>
+    <a href="<?php echo base_url() ?>empleados/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar empleados</a>
 
    </div>
  </div>
@@ -44,7 +44,7 @@
                  <div class="btn-group">
                   <button type="button" class="btn btn-info btn-view-emple" data-toggle="modal" data-target=".bs-example-modal-lg" value="<?php echo $empleado->id_empleado ?>"><span class="fa fa-search"></span></button>
                   
-                    <a href="#" title="" class="btn btn-warning "><span class="fa fa-pencil"></span></a>
+                    <a href="<?php echo base_url() ?>empleados/edit/<?php echo $empleado->id_empleado; ?>" title="" class="btn btn-warning "><span class="fa fa-pencil"></span></a>
                     
                      <a href="<?php echo base_url() ?>empleados/delete/<?php echo $empleado->id_empleado; ?>" title="" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                  </div>
