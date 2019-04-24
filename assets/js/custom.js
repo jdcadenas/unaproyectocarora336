@@ -2558,7 +2558,24 @@ if (typeof NProgress != 'undefined') {
 				  keys: true
 				});
 
-				$('#datatable-responsive').DataTable();
+				$('#datatable-responsive').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }
+    });
+
 
 				$('#datatable-scroller').DataTable({
 				  ajax: "js/datatables/json/scroller-demo.json",
@@ -5063,7 +5080,47 @@ if (typeof NProgress != 'undefined') {
 		init_CustomNotification();
 		init_autosize();
 		init_autocomplete();
-				
-	});	
-	
 
+			$(".btn-view").on('click', function(event) {
+      var id=$(this).val();
+
+      $.ajax({
+        url: base_url + "categorias/view/" + id,
+        type: 'POST',
+        success: function(resp){
+        	$(".bs-example-modal-lg .modal-body").html(resp);
+          //alert(resp);
+        }
+      });
+	
+});
+
+			$(".btn-view-emple").on('click', function(event) {
+      var id=$(this).val();
+
+      $.ajax({
+        url: base_url + "empleados/view/" + id,
+        type: 'POST',
+        success: function(resp){
+        	$(".bs-example-modal-lg .modal-body-emple").html(resp);
+          //alert(resp);
+        }
+      });
+	
+});
+				$(".btn-remove").on('click', function(e) {
+					e.preventDefault();
+     var ruta=$(this).attr("href");
+     // alert(ruta);
+
+      $.ajax({
+        url: ruta,
+       type: 'POST',
+       success: function(resp){
+       // 	alert(base_url + resp);
+         window.location.href = base_url + resp;
+       }
+      });
+	
+				});
+});	

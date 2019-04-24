@@ -18,4 +18,27 @@ class Empleados_model extends CI_Model {
     }
   }
 
+  public function getEmpleados(){
+    $this->db->where('estado', "1");
+
+    $resultados= $this->db->get('empleados');
+    return $resultados->result();
+  }
+
+  public function getEmpleado($id){
+    $this->db->where('id_empleado', $id);
+    $resultado=$this->db->get('empleados');
+    return $resultado->row();
+  }
+  public function save($data)
+  {
+    return $this->db->insert('empleados', $data);
+  }
+
+  public function update($id,$data)
+  {
+    $this->db->where('id_empleado', $id);
+    return $this->db->update('empleados', $data);
+  }
+
 }

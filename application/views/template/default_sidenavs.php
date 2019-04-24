@@ -25,8 +25,8 @@
           <li><a><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="<?php echo base_url('example/dashboard') ?>">Catálogo Productos</a></li>
-              <li><a href="<?php echo base_url('example/index') ?>">Sucursales</a></li>
-
+              <li><a href="<?php echo base_url('sucursales') ?>">Sucursales</a></li>
+              <li><a href="<?php echo base_url('categorias') ?>">Categorias</a></li>
             </ul>
           </li>
           <li><a><i class="fa fa-edit"></i> Gestión de Ventas <span class="fa fa-chevron-down"></span></a>
@@ -52,7 +52,7 @@
           </li>
           <li><a><i class="fa fa-edit"></i> Gestión de Empleados <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="<?php echo base_url('example/form_ex') ?>">General Form</a></li>
+              <li><a href="<?php echo base_url('empleados') ?>">Empleados</a></li>
               <li><a href="<?php echo base_url('example/table_ex') ?>">Table</a></li>
               <li><a href="<?php echo base_url('example/table_dyn_ex') ?>">Table Dynamics</a></li>
             </ul>

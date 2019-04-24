@@ -2,9 +2,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * This is Example Controller
- */
 class Auth extends CI_Controller {
 
   public function __construct() {
