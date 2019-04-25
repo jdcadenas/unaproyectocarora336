@@ -10,9 +10,9 @@ class Productos_model extends CI_Model
 
     public function getProductos()
     {
-        $this->db->select('p.*', 'l.nombre_linea as lineas');
+        $this->db->select("p.*,l.nombre_linea as lnombre");
         $this->db->from('productos p');
-        $this->db->join('lineas l', 'p.linea = l.id_linea', 'left');
+        $this->db->join('lineas l', 'p.linea = l.id_linea');
         $this->db->where('p.estado', "1");
 
         $resultados = $this->db->get();
