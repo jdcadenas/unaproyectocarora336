@@ -10,18 +10,18 @@
 
             <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error"); ?></p>
           </div>
-        <?php endif; ?>
+        <?php endif;?>
         <br />
 
 
-        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" 
-        action="<?php echo base_url(); ?>empleados/store" method="post">
+        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
+        action="<?php echo base_url(); ?>productos/store" method="post">
 
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cedula">Cédula <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cedula">Código <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="cedula" name="cedula" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="codigo" name="codigo" required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
@@ -32,40 +32,34 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellido">Apellido <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="precio">Precio <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="apellido" name="apellido" required="required" class="form-control col-md-7 col-xs-12">
+              <input type="text" id="precio" name="precio" required="required" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Teléfono <span class=""></span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cantidad">Cantidad <span class=""></span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="telefono" name="telefono"  class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="correo" class="control-label col-md-3 col-sm-3 col-xs-12">correo</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="correo" class="form-control col-md-7 col-xs-12" type="text" name="correo">
+              <input type="text" id="cantidad" name="cantidad"  class="form-control col-md-7 col-xs-12">
             </div>
           </div>
 
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellido">Usuario <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="usuario" name="usuario" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clave">Clave <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="clave" name="clave" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-          </div>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Línea</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" name="linea">
+                            <?php foreach ($lineas as $linea): ?>
+
+                              <option value="<?php echo $linea->id_linea ?>">
+                                <?php echo $linea->nombre_linea ?>
+                              </option>
+
+                            <?php endforeach;?>
+                          </select>
+                        </div>
+                      </div>
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Estado</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -79,7 +73,7 @@
               </div>
             </div>
           </div>
-         
+
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
