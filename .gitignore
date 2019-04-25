@@ -28,3 +28,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-workspace
 *.sublime-project
 /vendors/
+.phpintel/899a8dcfd0e4283ef5ab7f706979d257
+.phpintel/c77da1ca9d08986a405da28b4a9ae4bc
+.phpintel/def55fda5fdd23a22dfa7aa2938b1475
+.phpintel/
