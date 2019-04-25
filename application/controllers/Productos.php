@@ -11,6 +11,7 @@ class Productos extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Productos_model');
+        $this->load->model('Categorias_model');
     }
 
     public function index()
@@ -28,12 +29,12 @@ class Productos extends CI_Controller
 
     public function add()
     {
-
+        $data = array('lineas' => $this->Categorias_model->getCategorias());
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
         $this->template->write('title', 'Productos', true);
         $this->template->write('header', 'Productos <small> Agregar</small>');
-        $this->template->write_view('content', 'admin/productos/add');
+        $this->template->write_view('content', 'admin/productos/add', $data);
         $this->template->render();
     }
 
@@ -83,26 +84,20 @@ class Productos extends CI_Controller
 
     public function store()
     {
-        $cedula   = $this->input->post('cedula');
+        $codigo   = $this->input->post('codigo');
         $nombre   = $this->input->post('nombre');
-        $apellido = $this->input->post('apellido');
-        $telefono = $this->input->post('telefono');
-        $correo   = $this->input->post('correo');
-        $usuario  = $this->input->post('usuario');
-        $clave    = $this->input->post('clave');
+        $cantidad = $this->input->post('cantidad');
+        $precio   = $this->input->post('precio');
+        $linea    = $this->input->post('linea');
 
-        $data = array('cedula' => $cedula,
+        $data = array('codigo' => $codigo,
             'nombre'               => $nombre,
-            'apellido'             => $apellido,
-            'telefono'             => $telefono,
-            'correo'               => $correo,
-            'usuario'              => $usuario,
-            'clave'                => $clave,
-            'estado'               => '1',
-            'rol_id'               => '4',
+            'cantidad'             => $cantidad,
+            'precio'               => $precio,
+            'linea'                => $linea,
         );
 
-        if ($this->Empleados_model->save($data)) {
+        if ($this->Productos_model->save($data)) {
 
             redirect(base_url() . 'productos', 'refresh');
         } else {
