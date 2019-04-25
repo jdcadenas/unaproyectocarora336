@@ -109,12 +109,15 @@ class Productos extends CI_Controller
 
     public function edit($id)
     {
-        $data = array('producto' => $this->Productos_model->getProducto($id));
+        $data = array(
+            'producto' => $this->Productos_model->getProducto($id),
+            'lineas'   => $this->Categorias_model->getCategorias(),
+        );
 
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
-        $this->template->write('title', 'Productos  <small>Edición</small>', true);
-        $this->template->write('header', 'Productos  <small>Edición</small>');
+        $this->template->write('title', 'Productos  <small>Editar</small>', true);
+        $this->template->write('header', 'Productos  <small>Editar</small>');
         $this->template->write_view('content', 'admin/productos/edit', $data, true);
         $this->template->render();
     }

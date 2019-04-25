@@ -46,13 +46,25 @@
               <input type="text" id="cantidad" name="cantidad"  class="form-control col-md-7 col-xs-12" value="<?php echo $producto->cantidad ?>">
             </div>
           </div>
-          <div class="form-group">
-            <label for="linea" class="control-label col-md-3 col-sm-3 col-xs-12" >Linea</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="linea" class="form-control col-md-7 col-xs-12" type="text" name="linea" value="<?php echo $producto->linea ?>">
-            </div>
-          </div>
+         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Línea</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" name="linea">
+                            <?php foreach ($lineas as $linea): ?>
+                                <?php if ($linea->id_linea == $producto->linea): ?>
+                              <option value="<?php echo $linea->id_linea ?>" selected>
+                                <?php echo $linea->nombre_linea ?>
+                                 </option>
+                                <?php else: ?>
+                                   <option value="<?php echo $linea->id_linea ?>" >
+                                <?php echo $linea->nombre_linea ?>
 
+                              </option>
+                              <?php endif?>
+                            <?php endforeach;?>
+                          </select>
+                        </div>
+                      </div>
 
 
           <div class="form-group">

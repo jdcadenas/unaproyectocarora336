@@ -39,7 +39,7 @@
                <td class=" "><?php echo $producto->nombre; ?></td>
                <td class=" "><?php echo $producto->precio; ?></td>
                  <td class=" "><?php echo $producto->cantidad; ?></td>
-                  <td class=" "><?php echo $producto->nombre; ?></td>
+                  <td class=" "><?php echo $producto->lnombre; ?></td>
                 <td class=" last">
                  <div class="btn-group">
                   <button type="button" class="btn btn-info btn-view-emple" data-toggle="modal" data-target=".bs-example-modal-lg" value="<?php echo $producto->id_producto ?>"><span class="fa fa-search"></span></button>
