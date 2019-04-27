@@ -11,7 +11,7 @@ class Productos extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Productos_model');
-        $this->load->model('Categorias_model');
+        $this->load->model('Lineas_model');
     }
 
     public function index()
@@ -29,7 +29,7 @@ class Productos extends CI_Controller
 
     public function add()
     {
-        $data = array('lineas' => $this->Categorias_model->getCategorias());
+        $data = array('lineas' => $this->Lineas_model->getLineas());
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
         $this->template->write('title', 'Productos', true);

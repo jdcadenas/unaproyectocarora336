@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed');?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +12,9 @@
 
     <!-- Import CSS -->
     <link href="<?php echo base_url('vendors/bootstrap/dist/css/bootstrap.min.css') ?>" rel="stylesheet">
+
+      <link href="<?php echo base_url('assets/template/jquery-ui/jquery-ui.css') ?>" rel="stylesheet">
+
     <link href="<?php echo base_url('vendors/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('vendors/nprogress/nprogress.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('vendors/iCheck/skins/flat/green.css') ?>" rel="stylesheet">
@@ -64,6 +67,9 @@
     <!-- Import Javascript -->
     <script src="<?php echo base_url('vendors/jquery/dist/jquery.min.js') ?>"></script>
     <script src="<?php echo base_url('vendors/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+
+     <script src="<?php echo base_url('assets/template/jquery-ui/jquery-ui.js') ?>"></script>
+
     <script src="<?php echo base_url('vendors/fastclick/lib/fastclick.js') ?>"></script>
     <script src="<?php echo base_url('vendors/nprogress/nprogress.js') ?>"></script>
     <script src="<?php echo base_url('vendors/Chart.js/dist/Chart.min.js') ?>"></script>
@@ -99,7 +105,7 @@
     <script src="<?php echo base_url('vendors/select2/dist/js/select2.full.min.js') ?>"></script>
     <!-- This is for Form Validation <script src="<?php echo base_url('vendors/parsleyjs/dist/parsley.min.js') ?>"></script> -->
     <script src="<?php echo base_url('vendors/autosize/dist/autosize.min.js') ?>"></script>
-    <script src="<?php echo base_url('vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js') ?>"></script>
+   <!--  <script src="<?php// echo base_url('vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js') ?>"></script> -->
     <script src="<?php echo base_url('vendors/starrr/dist/starrr.js') ?>"></script>
     <!-- Datatables -->
     <script src="<?php echo base_url('vendors/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
