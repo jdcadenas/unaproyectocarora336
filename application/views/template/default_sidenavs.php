@@ -22,16 +22,16 @@
       <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-          <li><a><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
+          <li><a ><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="<?php echo base_url('productos') ?>">Catálogo Productos</a></li>
               <li><a href="<?php echo base_url('sucursales') ?>">Sucursales</a></li>
-              <li><a href="<?php echo base_url('categorias') ?>">Categorias</a></li>
+              <li><a href="<?php echo base_url('Lineas') ?>">Líneas</a></li>
             </ul>
           </li>
           <li><a><i class="fa fa-edit"></i> Gestión de Ventas <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="<?php echo base_url('example/form_ex') ?>">General Form</a></li>
+              <li><a href="<?php echo base_url('movimientos/ventas') ?>">Ventas</a></li>
               <li><a href="<?php echo base_url('example/table_ex') ?>">Table</a></li>
               <li><a href="<?php echo base_url('example/table_dyn_ex') ?>">Table Dynamics</a></li>
             </ul>
@@ -64,20 +64,8 @@
               <li><a href="<?php echo base_url('example/table_dyn_ex') ?>">Table Dynamics</a></li>
             </ul>
           </li>
-          <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="#level1">Menu 1</a></li>
-              <li><a>Menu 2 <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                  <li class="sub_menu"><a href="#level2_1">Menu 2.1</a></li>
-                  <li><a href="#level2_2">Menu 2.2</a></li>
-                  <li><a href="#level2_3">Menu 2.3</a></li>
-                </ul>
-              </li>
-              <li><a href="#level3">Menu 3</a></li>
-            </ul>
-          </li>
-          <li><a href="https://github.com/puikinsh/gentelella"><i class="fa fa-external-link-square"></i> Gentelella <span class="label label-info pull-right">Learn More</span></a></li>
+
+
         </ul>
       </div>
     </div>
