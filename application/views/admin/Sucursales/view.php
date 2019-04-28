@@ -1,0 +1,1 @@
+<p><strong>Nombre:</strong> <?php echo $linea->nombre_linea ?></p>

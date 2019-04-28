@@ -4714,6 +4714,10 @@ $("#btn-agregar").on('click',function() {
     html += "</tr>";
 
     $("#tbventas tbody").append(html);
+    sumar();
+    $('#btn-agregar').val(null);
+    $('#producto').val(null);
+
   } else {
     alert("seleccionar un producto ...")
   }
@@ -4723,6 +4727,8 @@ $("#btn-agregar").on('click',function() {
 
 $(document).on('click', '.btn-remove-producto', function(event) {
   $(this).closest('tr').remove();
+  sumar();
+
 
 });
 
@@ -4730,10 +4736,26 @@ $(document).on('keyup', '#tbventas input.cantidades', function(event) {
  cantidad = $(this).val();
  precio = $(this).closest('tr').find('td:eq(2)').text();
  subtotal= cantidad * precio;
- $(this).closest('tr').find('td:eq(5)').children('p').text(subtotal);
- $(this).closest('tr').find('td:eq(5)').children('input').val(subtotal);
+ $(this).closest('tr').find('td:eq(5)').children('p').text(subtotal.toFixed(2));
+ $(this).closest('tr').find('td:eq(5)').children('input').val(subtotal.toFixed(2));
 
+sumar();
 });
 
 
 }); //fin de document ready
+
+
+function sumar() {
+  subtotalFactura = 0;
+  $("#tbventas tbody tr").each(function(index, el) {
+    subtotalFactura = subtotalFactura + Number($(this).find('td:eq(5)').text());
+  });
+  $('input[name=subtotalFactura]').val(subtotalFactura.toFixed(2));
+    iva=12/100;
+    montoiva=iva*subtotalFactura;
+    total = subtotalFactura + montoiva;
+$('input[name=iva]').val(montoiva.toFixed(2));
+   $('input[name=total]').val(total.toFixed(2));
+
+}
