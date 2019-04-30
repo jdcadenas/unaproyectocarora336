@@ -15,8 +15,8 @@
         <form action="<?php echo base_url(); ?>movimientos/ventas/store" method="POST" class="form-horizontal">
           <div class="form-group">
             <div class="col-md-3">
-              <label for="">Numero:</label>
-              <input type="text" class="form-control" id="numero" name="numero" readonly>
+              <label for="numero">Numero:</label>
+              <input type="text" class="form-control" value="<?php echo $ultimaVenta + 1; ?>" id="numero" name="numero" readonly>
 
             </div>
             <div class="col-md-3">
@@ -31,16 +31,18 @@
             <div class="col-md-6">
               <label for="">Empleado:</label>
               <div class="input-group">
-                <input type="hidden" name="id_empleado" id="id_empleado">
-                <input type="text" class="form-control" disabled="disabled" id="empleado">
+                <input type="hidden" class="form-control" name="id_empleado" id="id_empleado">
+
+                <input type="text" class="form-control" name="empleado" id="empleado">
+
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default" ><span class="fa fa-search"></span> Buscar</button>
                 </span>
               </div><!-- /input-group -->
             </div>
             <div class="col-md-3">
-              <label for="">Fecha:</label>
-              <input type="date" class="form-control" name="fecha" required>
+              <label for="fecha">Fecha:</label>
+              <input type="date" class="form-control" name="fecha_venta" required>
             </div>
           </div>
           <div class="form-group">
@@ -49,7 +51,7 @@
               <input type="text" class="form-control" id="producto" name="producto" value="">
             </div>
             <div class="col-md-2">
-              <label for="">&nbsp;</label>
+              <label for="btn-agregar">&nbsp;</label>
               <button id="btn-agregar" type="button" class="btn btn-success btn-flat btn-block"><span class="fa fa-plus"></span> Agregar</button>
             </div>
           </div>
@@ -59,7 +61,7 @@
                 <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Precio</th>
-                <th>Stock Max.</th>
+                <th>Stock</th>
                 <th>Cantidad</th>
                 <th>subtotal</th>
                 <th></th>
@@ -154,6 +156,6 @@
 
 <script>
   //agregado personal
-    var base_url= "<?php echo base_url(); ?>"
+  var base_url = "<?php echo base_url(); ?>"
 
 </script>

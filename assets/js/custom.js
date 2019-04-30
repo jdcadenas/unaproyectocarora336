@@ -4669,12 +4669,19 @@ $(document).ready(function () {
       }
     });
   });
-  $(document).on('click', ".btn-check", function (e) {
-    cliente = $(this).val();
-    infocliente = cliente.split("*");
-    $("#id_empleado").val(infocliente[0]);
-    $("#empleado").val(infocliente[2] + ' ' + infocliente[3]);
+  $(document).on('click', ".btn-check", function () {
+    empleado = $(this).val();
+    
+    infoempleado = empleado.split("*");
+
+   //$('#empleado_id').val(infoempleado[0]);
+  //  $('#empleado').val('id:'+infoempleado[0]+' '+infoempleado[2] + ' ' + infoempleado[3]);
+    
+      $('#id_empleado').val(infoempleado[0]);
+ $('#empleado').val(infoempleado[2] + ' ' + infoempleado[3]);
     $("modal-default").modal("hide");
+
+    return false;
   });
 
   
@@ -4703,9 +4710,9 @@ $("#btn-agregar").on('click',function() {
   if (data !='') {
     infoproducto = data.split("*");
     html = "<tr>";
-    html += "<td><input type='hidden' name='idproductos[]' value'"+infoproducto[0]+"'>" +infoproducto[1]+"</td>";
+    html += "<td><input type='hidden' name='idproductos[]' value='"+infoproducto[0]+"'>" +infoproducto[1]+"</td>";
     html += "<td>"+infoproducto[2]+"</td>";
-    html += "<td><input type='hidden' name='precios[]' value'"+infoproducto[3]+"'>" +infoproducto[3]+"</td>";
+    html += "<td><input type='hidden' name='precios[]' value='"+infoproducto[3]+"'>" +infoproducto[3]+"</td>";
     html += "<td>"+infoproducto[4]+"</td>";
     html += "<td><input type='text' name='cantidades[]' value='1' class='cantidades'></td>";
     html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[3]+"'><p>"+infoproducto[3]+"</p></td>";
@@ -4741,6 +4748,33 @@ $(document).on('keyup', '#tbventas input.cantidades', function(event) {
 
 sumar();
 });
+
+
+$(document).on('click', '.btn-view-venta', function(event) {
+ valor_id= $(this).val();
+ $.ajax({
+   url: base_url + "movimientos/ventas/view",
+  
+   type:  'POST',
+   dataType: 'html',
+   data: {id:valor_id},
+ })
+ .done(function(data) {
+   console.log("success");
+   $(".modal-default .modal-body").html(data);
+
+
+ })
+ .fail(function() {
+   console.log("error");
+ })
+ .always(function() {
+   console.log("complete");
+ });
+ 
+  /* Act on the event */
+});
+
 
 
 }); //fin de document ready
