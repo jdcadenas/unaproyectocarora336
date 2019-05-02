@@ -1,7 +1,7 @@
 
 <div class="row">
 	<div class="col-xs-12 text-center">
-		<b>Carora Color C.A.</b><br>
+		<b>Carora Color VenezuelaC.A.</b><br>
 		UNA 336 <br>
 		José Cadenas <br>
 		Correo: jdcadenas@gmail.com
@@ -12,7 +12,7 @@
 		<b>VENDEDOR</b><br>
 		<b>Nombre:</b>
 		 <?php echo $venta->nombrevendedor . " " . $venta->apellidovendedor; ?> <br>
-		<b>Nro Documento:</b> <?php echo $venta->cedula ?><br>
+		<b>Cédula:</b> <?php echo $venta->cedula ?><br>
 		<b>Teléfono:</b><?php echo $venta->telefono ?> <br>
 		<b>Correo</b> <?php echo $venta->correo ?><br>
 	</div>
@@ -30,7 +30,7 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Codigo</th>
+					<th>Código</th>
 					<th>Nombre</th>
 					<th>Precio</th>
 					<th>Cantidad</th>

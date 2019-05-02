@@ -21,8 +21,12 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <h3>General</h3>
+
         <ul class="nav side-menu">
-          <li><a ><i class="fa fa-home"></i> Inicio <span class="fa fa-chevron-down"></span></a>
+          <li><a href="<?php echo base_url('principal') ?>"><i class="fa fa-home"></i> Inicio</a>
+
+          </li>
+          <li><a ><i class="fa fa-edit"></i> Mantenimiento <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="<?php echo base_url('productos') ?>">Catálogo Productos</a></li>
               <li><a href="<?php echo base_url('sucursales') ?>">Sucursales</a></li>
@@ -59,7 +63,7 @@
           </li>
           <li><a><i class="fa fa-edit"></i> Reportes <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="<?php echo base_url('example/form_ex') ?>">General Form</a></li>
+              <li><a href="<?php echo base_url('reportes/ventas') ?>">Ventas</a></li>
               <li><a href="<?php echo base_url('example/table_ex') ?>">Table</a></li>
               <li><a href="<?php echo base_url('example/table_dyn_ex') ?>">Table Dynamics</a></li>
             </ul>

@@ -70,6 +70,12 @@
 
      <script src="<?php echo base_url('assets/template/jquery-ui/jquery-ui.js') ?>"></script>
 
+ <!-- highcharts -->
+
+  <script src="<?php echo base_url('assets/template/highcharts/highcharts.js') ?>"></script>
+<script src="<?php echo base_url('assets/template/highcharts/exporting.js') ?>"></script>
+<script src="<?php echo base_url('assets/template/highcharts/export-data.js') ?>"></script>
+
     <script src="<?php echo base_url('vendors/fastclick/lib/fastclick.js') ?>"></script>
     <script src="<?php echo base_url('vendors/nprogress/nprogress.js') ?>"></script>
     <script src="<?php echo base_url('vendors/Chart.js/dist/Chart.min.js') ?>"></script>
