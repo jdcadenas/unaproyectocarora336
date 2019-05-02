@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2019 a las 19:21:02
+-- Tiempo de generación: 02-05-2019 a las 21:06:51
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -47,6 +47,15 @@ CREATE TABLE `detalle_venta` (
   `venta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `detalle_venta`
+--
+
+INSERT INTO `detalle_venta` (`id_det_venta`, `producto_id`, `cantidad`, `precio_venta`, `venta_id`) VALUES
+(4, 3, 1000, 15500, 15),
+(5, 2, 100, 15500, 16),
+(6, 7, 199, 22000, 16);
+
 -- --------------------------------------------------------
 
 --
@@ -60,55 +69,31 @@ CREATE TABLE `empleados` (
   `apellido` varchar(50) NOT NULL,
   `telefono` varchar(12) NOT NULL,
   `correo` varchar(40) NOT NULL,
-  `clave` varchar(40) NOT NULL,
-  `rol_id` int(11) NOT NULL
+  `usuario` varchar(50) NOT NULL,
+  `clave` varchar(100) NOT NULL,
+  `rol_id` int(11) NOT NULL,
+  `sucursal_id` int(11) NOT NULL DEFAULT '1',
+  `estado` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`id_empleado`, `cedula`, `nombre`, `apellido`, `telefono`, `correo`, `clave`, `rol_id`) VALUES
-(1, 6, 'José', 'Cadenas', '1', 'jdcadenas@gmail.com', '6', 1),
-(2, 2, 'Vicente', 'Perez', '2', 'perez@gmail.com', '2', 2),
-(3, 21, 'Vicente21', 'Perez', '2', 'perez21@gmail.com', '21', 2),
-(4, 3, 'Super3', 'Visor', '3', '3@gmail.com', '3', 3),
-(5, 31, 'Super', 'Visor', '31', '3@gmail.com', '31', 3),
-(6, 4, 'vend', 'edor', '4', '4@gmail.com', '4', 4),
-(7, 41, 'Oto', 'vendedor', '41', '41#gmail.com', '41', 4),
-(8, 43, 'vend 43', 'edor', '4', '4@gmail.com', '4', 4),
-(9, 42, 'Oto42', 'vendedor', '41', '41#gmail.com', '41', 4),
-(10, 22, 'gerenoeste', 'te', '2', '2@gmail.com', '2', 2),
-(11, 24, 'gerenoeste', 'te', '2', '2@gmail.com', '2', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `empleado_sucursal`
---
-
-CREATE TABLE `empleado_sucursal` (
-  `id_emp_sucursal` int(11) NOT NULL,
-  `sucursal_id` int(11) NOT NULL,
-  `empleado_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `empleado_sucursal`
---
-
-INSERT INTO `empleado_sucursal` (`id_emp_sucursal`, `sucursal_id`, `empleado_id`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(4, 3, 3),
-(5, 3, 5),
-(7, 3, 6),
-(8, 4, 4),
-(9, 4, 7),
-(10, 5, 8),
-(11, 5, 9),
-(12, 5, 11),
-(13, 5, 10);
+INSERT INTO `empleados` (`id_empleado`, `cedula`, `nombre`, `apellido`, `telefono`, `correo`, `usuario`, `clave`, `rol_id`, `sucursal_id`, `estado`) VALUES
+(1, 6, 'José', 'Cadenas', '1', 'jdcadenas@gmail.com', '1', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, 1, 1),
+(2, 2, 'Vicente', 'Perez', '2', 'perez@gmail.com', '2', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, 1, 0),
+(3, 211, 'Vicente219', 'Perez9', '29', 'perez21@gmail.com9', '399', '666', 4, 1, 1),
+(4, 3, 'Super3', 'Visor', '3', '3@gmail.com', '', '3', 3, 1, 1),
+(5, 31, 'Super', 'Visor', '31', '3@gmail.com', '', '31', 3, 1, 1),
+(6, 4, 'vend', 'edor', '4', '4@gmail.com', '', '4', 4, 1, 0),
+(7, 41, 'Oto', 'vendedor', '41', '41#gmail.com', '', '41', 4, 1, 0),
+(8, 43, 'vend 43', 'edor', '4', '4@gmail.com', '', '4', 4, 1, 1),
+(9, 42, 'Oto42', 'vendedor', '41', '41#gmail.com', '', '41', 4, 1, 1),
+(10, 22, 'gerenoeste', 'te', '2', '2@gmail.com', '', '2', 2, 1, 1),
+(11, 24, 'gerenoeste', 'te', '2', '2@gmail.com', '', '2', 2, 1, 1),
+(13, 98, '9888', '98888', '9999', '999', '9', '9', 4, 1, 1),
+(14, 78, '7878', '787', '78', '787', '787', '7887', 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -118,22 +103,27 @@ INSERT INTO `empleado_sucursal` (`id_emp_sucursal`, `sucursal_id`, `empleado_id`
 
 CREATE TABLE `lineas` (
   `id_linea` int(11) NOT NULL,
-  `nombre_linea` varchar(100) NOT NULL
+  `nombre_linea` varchar(100) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `lineas`
 --
 
-INSERT INTO `lineas` (`id_linea`, `nombre_linea`) VALUES
-(1, 'Brillo de seda'),
-(2, 'Aceite brillante'),
-(3, 'Para Exteriores'),
-(4, 'Aceite Mate'),
-(5, 'Al agua'),
-(6, 'Secado rápido'),
-(7, 'para Metal'),
-(8, 'Antioxidante');
+INSERT INTO `lineas` (`id_linea`, `nombre_linea`, `estado`) VALUES
+(1, 'Brillo de seda88', 1),
+(2, 'Aceite brillante', 0),
+(3, 'Para Exteriores', 1),
+(4, 'Aceite Mate', 1),
+(5, 'Al agua vv', 0),
+(6, 'Secado rápido', 1),
+(7, 'para Metal', 1),
+(8, 'Antioxidante varias', 1),
+(9, 'linea nueva', 1),
+(10, 'linea antigua', 1),
+(11, 'otra linea', 1),
+(12, 'Brillo de seda nueva', 1);
 
 -- --------------------------------------------------------
 
@@ -156,23 +146,28 @@ CREATE TABLE `pedidos` (
 
 CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
+  `codigo` varchar(20) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `precio` float(12,2) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `linea` int(11) NOT NULL
+  `linea` int(11) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `cantidad`, `linea`) VALUES
-(2, 'Pintura cremosa', 15500.00, 50, 1),
-(3, 'Pintura pastosa Roja', 15500.00, 50, 2),
-(4, 'Pintura marca XYZ', 26000.00, 20, 1),
-(5, 'Pintura La Otra', 22000.00, 30, 3),
-(6, 'Pintura marca XYZ', 26000.00, 20, 1),
-(7, 'Pintura La Otra', 22000.00, 30, 3);
+INSERT INTO `productos` (`id_producto`, `codigo`, `nombre`, `precio`, `cantidad`, `linea`, `estado`) VALUES
+(2, '12009', 'Pintura cremosa', 15500.00, -50, 2, 0),
+(3, '2343', 'Pintura pastosa Roja', 15500.00, -950, 2, 1),
+(4, '3434', 'Pintura marca XYZ', 26000.00, 20, 1, 1),
+(5, '343455', 'Pintura La Otra', 22000.00, 30, 3, 1),
+(6, '7654', 'Pintura marca XYZ', 26000.00, 20, 1, 1),
+(7, '432', 'Pintura La Otra', 22000.00, -169, 3, 1),
+(8, '1005', 'Pintura para tubod', 12500.00, 4, 1, 0),
+(9, '1234', 'Pintura', 3002.00, 44, 10, 1),
+(10, '123456', 'Pintura de carton', 1000.00, 10, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -204,19 +199,20 @@ INSERT INTO `roles` (`id_rol`, `rol`) VALUES
 CREATE TABLE `sucursales` (
   `id` int(11) NOT NULL,
   `nombre` varchar(20) NOT NULL,
-  `ubicacion` varchar(100) NOT NULL
+  `ubicacion` varchar(100) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `sucursales`
 --
 
-INSERT INTO `sucursales` (`id`, `nombre`, `ubicacion`) VALUES
-(1, 'sede central', 'principal'),
-(2, 'oeste', 'miralejos'),
-(3, 'este', 'vereste'),
-(4, 'norte', 'miralejos Norte'),
-(5, 'Sur', 'verSur');
+INSERT INTO `sucursales` (`id`, `nombre`, `ubicacion`, `estado`) VALUES
+(1, 'sede central', 'principal', 1),
+(2, 'oeste', 'miralejos', 1),
+(3, 'este', 'vereste', 1),
+(4, 'norte', 'miralejos Norte', 1),
+(5, 'Sur', 'verSur', 1);
 
 -- --------------------------------------------------------
 
@@ -228,8 +224,25 @@ CREATE TABLE `ventas` (
   `id_venta` int(11) NOT NULL,
   `fecha_venta` date NOT NULL,
   `total` float(12,2) NOT NULL,
-  `vendedor_id` int(11) NOT NULL
+  `empleado_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`id_venta`, `fecha_venta`, `total`, `empleado_id`) VALUES
+(2, '2019-04-20', 17360.00, 1),
+(4, '2018-04-05', 17360.00, 2),
+(8, '2018-04-03', 17360.00, 3),
+(9, '2019-03-29', 17360.00, 11),
+(10, '2019-04-01', 8520.00, 9),
+(11, '2019-04-06', 8460.00, 5),
+(12, '2019-06-30', 4000.00, 4),
+(13, '2019-04-23', 500.00, 3),
+(14, '2019-04-23', 9500.00, 3),
+(15, '2019-04-03', 1000.00, 3),
+(16, '2019-04-10', 5000.00, 5);
 
 --
 -- Índices para tablas volcadas
@@ -257,15 +270,9 @@ ALTER TABLE `detalle_venta`
 --
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`id_empleado`),
-  ADD KEY `rolindex` (`rol_id`);
-
---
--- Indices de la tabla `empleado_sucursal`
---
-ALTER TABLE `empleado_sucursal`
-  ADD PRIMARY KEY (`id_emp_sucursal`),
-  ADD KEY `suc` (`sucursal_id`),
-  ADD KEY `emp` (`empleado_id`);
+  ADD UNIQUE KEY `cedula` (`cedula`),
+  ADD KEY `rolindex` (`rol_id`),
+  ADD KEY `sucu1` (`sucursal_id`);
 
 --
 -- Indices de la tabla `lineas`
@@ -304,7 +311,7 @@ ALTER TABLE `sucursales`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`id_venta`),
-  ADD KEY `vend` (`vendedor_id`);
+  ADD KEY `vend` (`empleado_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -319,22 +326,17 @@ ALTER TABLE `detalle_pedido`
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_det_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_det_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT de la tabla `empleado_sucursal`
---
-ALTER TABLE `empleado_sucursal`
-  MODIFY `id_emp_sucursal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `lineas`
 --
 ALTER TABLE `lineas`
-  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_linea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
@@ -344,12 +346,12 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `sucursales`
 --
@@ -359,7 +361,7 @@ ALTER TABLE `sucursales`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Restricciones para tablas volcadas
 --
@@ -382,14 +384,8 @@ ALTER TABLE `detalle_venta`
 -- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
+  ADD CONSTRAINT `qwe` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `restroles` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id_rol`);
-
---
--- Filtros para la tabla `empleado_sucursal`
---
-ALTER TABLE `empleado_sucursal`
-  ADD CONSTRAINT `emprest` FOREIGN KEY (`empleado_id`) REFERENCES `empleados` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sucrest` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedidos`
@@ -407,7 +403,7 @@ ALTER TABLE `productos`
 -- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`vendedor_id`) REFERENCES `empleados` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`empleado_id`) REFERENCES `empleados` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
