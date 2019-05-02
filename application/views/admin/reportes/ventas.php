@@ -1,16 +1,41 @@
-<div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12">
+<div class="box box-solid">
+  <div class="box-body">
+    <div class="row">
+      <form action="<?php echo current_url(); ?>" method="post" accept-charset="utf-8" class="form-horizontal">
+        <div class="form-group">
+          <label for="" class="col-md-1 control-label">Desde</label>
+          <div class="col-md-3">
+            <input type="date" class="form-control" name="fechainicio" value="<?php echo !empty($fechainicio) ? $fechainicio : ''; ?>" >
 
-    <a href="<?php echo base_url() ?>movimientos/ventas/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Ventas</a>
+          </div>
+          <label for="" class="col-md-1 control-label">Hasta</label>
+          <div class="col-md-3">
+            <input type="date" class="form-control" name="fechafin" value="<?php echo !empty($fechafin) ? $fechafin : ''; ?>" >
 
-   </div>
- </div>
 
-  <div class="clearfix"></div>
+          </div>
+<div class="col-md-4">
+
+
+          <div class="btn-group ">
+            <input type="submit" class="btn btn-primary" value="Buscar" name="buscar" >
+  <a href="<?php echo base_url(); ?>reportes/ventas" class="btn btn-danger" title="">Restablecer</a>
+          </div>
+</div>
+</div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
    <div class="x_content">
-
 
         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
             <thead>
@@ -43,29 +68,19 @@
                  <div class="btn-group">
                   <button type="button" class="btn btn-info btn-view-venta" data-toggle="modal" data-target=".modal-default" value="<?php echo $venta->id_venta ?>"><span class="fa fa-search"></span></button>
 
-
                  </div>
                 </td>
               </tr>
 
-
-
-
-
                 <?php endforeach?>
-
               <?php endif?>
-
-
 
             </tbody>
           </table>
         </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
  <!-- Large modal -->
 
 

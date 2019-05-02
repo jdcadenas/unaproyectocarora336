@@ -8,7 +8,6 @@ class Ventas_model extends CI_Model
         $this->db->select("v.*,e.nombre as vendedor");
         $this->db->from('ventas v');
         $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
-        $this->db->where('v.estado', "1");
 
         $resultados = $this->db->get();
 
@@ -19,17 +18,22 @@ class Ventas_model extends CI_Model
         }
 
     }
-
-    public function getproductos($valor)
+    public function getVentasByDate($fechainicio, $fechafin)
     {
-        $this->db->select('id_producto,codigo,nombre as label,precio,cantidad');
-        $this->db->from('productos');
-        $this->db->like('nombre', $valor);
+        $this->db->select("v.*,e.nombre as vendedor");
+        $this->db->from('ventas v');
+        $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
+        $this->db->where('v.fecha_venta >=', $fechainicio);
+        $this->db->where('v.fecha_venta <=', $fechafin);
         $resultados = $this->db->get();
 
-        return $resultados->result_array();
-    }
+        if ($resultados->num_rows() > 0) {
+            return $resultados->result();
+        } else {
+            return false;
+        }
 
+    }
     public function getVenta($id)
     {
         $this->db->where('id_venta', $id);
@@ -59,11 +63,6 @@ class Ventas_model extends CI_Model
         $this->db->insert('detalle_venta', $data);
     }
 
-    public function update($id, $data)
-    {
-        $this->db->where('id_producto', $id);
-        return $this->db->update('productos', $data);
-    }
     public function getVentemplesucu($id)
     {
         $this->db->select("v.*,e.nombre as nombrevendedor,e.apellido as apellidovendedor,e.correo,e.telefono, e.correo,e.cedula,s.nombre as sucursal,s.ubicacion");
@@ -83,6 +82,27 @@ class Ventas_model extends CI_Model
         $this->db->where('dv.venta_id', $id);
         $resultado = $this->db->get();
         return $resultado->result();
+    }
+
+    public function years()
+    {
+        $this->db->select('YEAR(fecha_venta) as year');
+        $this->db->from('ventas');
+        $this->db->group_by('year');
+        $this->db->order_by('year', 'desc');
+        $resultados = $this->db->get();
+        return $resultados->result();
+    }
+    public function montos($year)
+    {
+        $this->db->select('MONTH(fecha_venta) as mes, SUM(total) as monto');
+        $this->db->from('ventas');
+        $this->db->where('fecha_venta >=', $year . "-01-01");
+        $this->db->where('fecha_venta <=', $year . "-12-31");
+        $this->db->group_by('mes');
+        $this->db->order_by('mes');
+        $resultados = $this->db->get();
+        return $resultados->result();
     }
 
 }
