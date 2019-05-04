@@ -19,11 +19,10 @@
               <input type="text" class="form-control" value="<?php echo $ultimaVenta + 1; ?>" id="numero" name="numero" readonly>
 
             </div>
-
             <div class="col-md-6">
                 <label for="">Sucursal:</label>
               <div class="input-group">
-                <input type="hidden" class="form-control" name="id_sucursal" id="id_sucursal">
+                <input type="hidden" class="form-control" name="id_sucur" id="id_sucur">
 
                 <input type="text" class="form-control" name="sucursal" id="sucursal">
 
@@ -34,9 +33,6 @@
               </div><!-- /input-group -->
             </div>
 
-            <div class="col-md-3">
-
-            </div>
 
           </div>
           <div class="form-group">
@@ -48,7 +44,8 @@
                 <input type="text" class="form-control" name="empleado" id="empleado">
 
                 <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default" ><span class="fa fa-search"></span> Buscar</button>
+                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default" >
+                    <span class="fa fa-search"></span> Buscar</button>
                 </span>
               </div><!-- /input-group -->
             </div>
@@ -165,13 +162,15 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
 <div class="modal fade" id="modal-default-sucursal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Lista de Sucursales</h4>
+        <h4 class="modal-title">Lita de Sucursales</h4>
       </div>
       <div class="modal-body">
         <table id="datatable-responsive" class="table table-bordered table-striped table-hover">
@@ -208,6 +207,7 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
 <script>
   //agregado personal
   var base_url = "<?php echo base_url(); ?>"

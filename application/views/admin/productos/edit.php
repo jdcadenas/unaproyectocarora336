@@ -43,7 +43,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cantidad">Cantidad <span class=""></span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="cantidad" name="cantidad"  class="form-control col-md-7 col-xs-12" value="<?php echo $producto->cantidad ?>">
+              <input type="text" id="cantidad" name="cantidad"  class="form-control col-md-7 col-xs-12" value="<?php echo $almacen->cantidad ?>">
             </div>
           </div>
          <div class="form-group">
