@@ -41,29 +41,37 @@ Para la Gerencia de Ventas:
 	 **Visualizar promedio de ventas por sucursal.
 	 **Visualizar histórico de ventas de cada producto.
 	 **Acceder/Visualizar órdenes de pedidos de productos.
-
 	 **Acceder al catálogo de productos.
-	 **Planificar cambios en el inventario de cada sucursal (distribución geográfica estratégica).
+	 **Planificar cambios en el inventario de cada sucursal (distribución geográfica estratégica)
 	 **Planificar cambios de ubicación estratégica en el personal (vendedores) de cada sucursal.
 	 **Mantener comunicación vía correo electrónico con los vendedores.
+
 Para el supervisor de ventas:
+
 		** Acceder al catálogo de productos.
 		** Registrar órdenes de pedidos de productos.
 		** Visualizar el stock del inventario.
 		** Mantener comunicación vía correo electrónico con los vendedores.
+
 Para los Vendedores:
 		** Acceder al catálogo de productos.
 		** Registrar las ventas.
 		** Visualizar el stock del inventario.
 		** Mantener comunicación vía correo electrónico con el supervisor.
+
 Para los Usuarios en línea:
+
 		** Visualizar al catálogo de productos.
 		** Visualizar de la información geográfica de las sucursales.
+
 Para el Administrador del Sistema:
-		**Acceder a todo el sistema sin ningún tipo de restricciones.
-		**Registro de los usuarios empleados de la empresa.
-		**Mantener los datos almacenados en la base de datos.
+
+		** Acceder a todo el sistema sin ningún tipo de restricciones.
+		** Registro de los usuarios empleados de la empresa.
+		** Mantener los datos almacenados en la base de datos.
+
 El sistema de información tendrá como valor agregado las siguientes funcionalidades:
+
 Reporte de Histórico de ventas (sucursal y vendedores), ordenado según la preferencia del usuario.
 Reporte de ventas realizadas (sucursal, vendedor).
 Reporte de órdenes de pedidos a almacén.
