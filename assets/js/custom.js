@@ -4675,11 +4675,24 @@ $(document).ready(function() {
     return false;
   });
 
+  $(document).on('click', ".btn-check-sucur", function() {
+    sucursal = $(this).val();
+
+    infosucursal = sucursal.split("*");
+
+    $('#id_sucursal').val(infosucursal[0]);
+    $('#sucursal').val(infosucursal[1] + " Ubicación: " + infosucursal[2]);
+
+    $("modal-default").modal("hide");
+
+    return false;
+  });
+
 
   $('#producto').autocomplete({
     source: function(request, response) {
       $.ajax({
-        url: base_url + "movimientos/ventas/getproductos",
+        url: base_url + "movimientos/ventas/getproductos/" + $('#id_sucursal').val(),
         type: "POST",
         dataType: "json",
         data: {

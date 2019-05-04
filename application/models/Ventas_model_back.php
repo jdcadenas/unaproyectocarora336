@@ -5,10 +5,10 @@ class Ventas_model extends CI_Model
 
     public function getVentas()
     {
-        $this->db->select("v.*,e.nombre as vendedor, s.nombre as sucursal");
+        $this->db->select("v.*,e.nombre as vendedor");
         $this->db->from('ventas v');
         $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
-        $this->db->join('sucursales s', 'e.sucursal_id = s.id');
+
         $resultados = $this->db->get();
 
         if ($resultados->num_rows() > 0) {
@@ -16,33 +16,24 @@ class Ventas_model extends CI_Model
         } else {
             return false;
         }
+
     }
-
-    public function getproductos($valor, $sucursal)
+    public function getVentasByDate($fechainicio, $fechafin)
     {
-        /*select p.id_producto, p.codigo, p.nombre as label,
-        p.precio, p.cantidad, l.nombre_linea as lnombre, s.id as idsucursal,
-        s.nombre as sucursal
-        from productos as p
-        join lineas l on p.linea = l.id_linea
-        join almacen a on p.id_producto = a.producto_id
-        join sucursales s on s.id = a.sucursal_id
-        where p.estado = "1" and a.sucursal_id='1'
-        and p.nombre like 'pin%' */
-
-        $this->db->select("p.id_producto,p.codigo,p.nombre as label,p.precio,p.cantidad,l.nombre_linea as lnombre, s.id as idsucursal, s.nombre as sucursal");
-        $this->db->from('productos p');
-        $this->db->join('lineas l', 'p.linea = l.id_linea');
-        $this->db->join('almacen a', 'p.id_producto = a.producto_id');
-        $this->db->join('sucursales s', 's.id = a.sucursal_id');
-        $this->db->where('p.estado', "1");
-        $this->db->where('a.sucursal_id', $sucursal);
-        $this->db->like('p.nombre', $valor);
+        $this->db->select("v.*,e.nombre as vendedor");
+        $this->db->from('ventas v');
+        $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
+        $this->db->where('v.fecha_venta >=', $fechainicio);
+        $this->db->where('v.fecha_venta <=', $fechafin);
         $resultados = $this->db->get();
 
-        return $resultados->result_array();
-    }
+        if ($resultados->num_rows() > 0) {
+            return $resultados->result();
+        } else {
+            return false;
+        }
 
+    }
     public function getVenta($id)
     {
         $this->db->where('id_venta', $id);
@@ -59,6 +50,7 @@ class Ventas_model extends CI_Model
         }
 
         return (int) $maxid;
+
     }
 
     public function save($data)
@@ -71,12 +63,6 @@ class Ventas_model extends CI_Model
         $this->db->insert('detalle_venta', $data);
     }
 
-    public function update($id, $data)
-    {
-        $this->db->where('id_producto', $id);
-        return $this->db->update('productos', $data);
-    }
-
     public function getVentemplesucu($id)
     {
         $this->db->select("v.*,e.nombre as nombrevendedor,e.apellido as apellidovendedor,e.correo,e.telefono, e.correo,e.cedula,s.nombre as sucursal,s.ubicacion");
@@ -86,8 +72,8 @@ class Ventas_model extends CI_Model
         $this->db->where('v.id_venta', $id);
         $resultado = $this->db->get();
         return $resultado->row();
-    }
 
+    }
     public function getDetalle($id)
     {
         $this->db->select("dv.*,p.Codigo as Codigo,p.nombre");
@@ -97,6 +83,7 @@ class Ventas_model extends CI_Model
         $resultado = $this->db->get();
         return $resultado->result();
     }
+
     public function years()
     {
         $this->db->select('YEAR(fecha_venta) as year');

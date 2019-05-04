@@ -12,6 +12,8 @@ class Productos extends CI_Controller
         parent::__construct();
         $this->load->model('Productos_model');
         $this->load->model('Lineas_model');
+        $this->load->model('Sucursales_model');
+        $this->load->model('Almacenes_model');
     }
 
     public function index()
@@ -29,7 +31,11 @@ class Productos extends CI_Controller
 
     public function add()
     {
-        $data = array('lineas' => $this->Lineas_model->getLineas());
+        $data = array(
+            'lineas'     => $this->Lineas_model->getLineas(),
+            'sucursales' => $this->Sucursales_model->getSucursales(),
+        );
+
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
         $this->template->write('title', 'Productos', true);
@@ -89,6 +95,7 @@ class Productos extends CI_Controller
         $cantidad = $this->input->post('cantidad');
         $precio   = $this->input->post('precio');
         $linea    = $this->input->post('linea');
+        $sucursal = $this->input->post('sucursal');
 
         $data = array('codigo' => $codigo,
             'nombre'               => $nombre,
@@ -99,6 +106,18 @@ class Productos extends CI_Controller
 
         if ($this->Productos_model->save($data)) {
 
+            $idproducto = $this->Productos_model->lastID();
+
+            $data1 = array(
+                'sucursal_id' => $sucursal,
+                'producto_id' => $idproducto,
+                'cantidad'    => $cantidad,
+            );
+
+            //falta chequear si no se incluye en tabla almacenes
+
+            $this->Almacenes_model->save($data1);
+
             redirect(base_url() . 'productos', 'refresh');
         } else {
 
@@ -107,18 +126,20 @@ class Productos extends CI_Controller
         }
     }
 
-    public function edit($id)
+    public function edit($id, $id_sucursal)
     {
         $data = array(
-            'producto' => $this->Productos_model->getProducto($id),
-            'lineas'   => $this->Categorias_model->getCategorias(),
+            'producto'   => $this->Productos_model->getProducto($id),
+            'almacen'    => $this->Almacenes_model->getProductoAlmacen($id, $id_sucursal),
+            'lineas'     => $this->Lineas_model->getLineas(),
+            'sucursales' => $this->Sucursales_model->getSucursales(),
         );
 
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
         $this->template->write('title', 'Productos  <small>Editar</small>', true);
         $this->template->write('header', 'Productos  <small>Editar</small>');
-        $this->template->write_view('content', 'admin/productos/edit', $data, true);
+        $this->template->write_view('content', 'admin/productos/edit', $data);
         $this->template->render();
     }
 
