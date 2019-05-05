@@ -136,9 +136,9 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>cedula</th>
+              <th>Cédula</th>
               <th>Nombre</th>
-              <th>opcion</th>
+              <th>Opcion</th>
             </tr>
           </thead>
           <tbody>

@@ -28,7 +28,7 @@ class Almacenes_model extends CI_Model
         return $resultados->result();
     }
 
-    public function getProductoAlmacen($id_producto, $id_sucursal)
+    public function getProductoAlmacen($id_sucursal, $id_producto)
     {
         $this->db->where('producto_id', $id_producto);
         $this->db->where('sucursal_id', $id_sucursal);

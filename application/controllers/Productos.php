@@ -16,22 +16,27 @@ class Productos extends CI_Controller
         $this->load->model('Almacenes_model');
     }
 
-    public function index()
+    public function index($ids = 1)
     {
 
-        $data = array('productos' => $this->Productos_model->getProductos());
+        $data = array(
+            'ids'        => $ids,
+            'productos'  => $this->Productos_model->getProductos($ids),
+            'sucursales' => $this->Sucursales_model->getSucursales(),
+        );
 
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
         $this->template->write('title', 'Productos', true);
-        $this->template->write('header', 'Productos');
+        $this->template->write('header', 'Productos Por Sucursales');
         $this->template->write_view('content', 'admin/productos/list', $data, true);
         $this->template->render();
     }
 
-    public function add()
+    public function add($ids)
     {
         $data = array(
+            'ids'        => $ids,
             'lineas'     => $this->Lineas_model->getLineas(),
             'sucursales' => $this->Sucursales_model->getSucursales(),
         );
@@ -60,61 +65,73 @@ class Productos extends CI_Controller
 
     public function update()
     {
+        //recibo datos del formulario
         $id_producto = $this->input->post('id_producto');
         $codigo      = $this->input->post('codigo');
         $nombre      = $this->input->post('nombre');
         $precio      = $this->input->post('precio');
         $cantidad    = $this->input->post('cantidad');
         $linea       = $this->input->post('linea');
+        $sucursal    = $this->input->post('sucursal');
+//preparo para actualizar tabla productos
+        $data = array(
+            'codigo' => $codigo,
+            'nombre' => $nombre,
+            'precio' => $precio,
 
-        $data = array('codigo' => $codigo,
-            'nombre'               => $nombre,
-            'precio'               => $precio,
-            'cantidad'             => $cantidad,
-            'linea'                => $linea,
-
-            'estado'               => '1',
+            'linea'  => $linea,
+            'estado' => '1',
 
         );
-
+//actualizo la tabla productos segun id
         $resp = $this->Productos_model->update($id_producto, $data);
         if (!$resp) {
 
             $this->session->set_flashdata('error', 'No se pudo guardar la información');
-            redirect(base_url() . 'productos/edit/' . $id_producto);
+            redirect(base_url() . 'productos/edit/' . $id_producto . '/' . $sucursal);
 
         } else {
+
+            //modifico la cantidad en almacen
+            $data1 = array(
+                'cantidad' => $cantidad,
+            );
+
+            $this->Almacenes_model->update($sucursal, $id_producto, $data1);
+
             redirect(base_url() . 'productos', 'refresh');
         }
     }
 
     public function store()
     {
+        //recibo datos del formulario de productos de almacen
         $codigo   = $this->input->post('codigo');
         $nombre   = $this->input->post('nombre');
         $cantidad = $this->input->post('cantidad');
         $precio   = $this->input->post('precio');
         $linea    = $this->input->post('linea');
         $sucursal = $this->input->post('sucursal');
-
-        $data = array('codigo' => $codigo,
-            'nombre'               => $nombre,
-            'cantidad'             => $cantidad,
-            'precio'               => $precio,
-            'linea'                => $linea,
+        //datso para ingresar en tabla productos
+        $data = array(
+            'codigo'   => $codigo,
+            'nombre'   => $nombre,
+            'cantidad' => $cantidad,
+            'precio'   => $precio,
+            'linea'    => $linea,
         );
-
+//registro en tabla productos
         if ($this->Productos_model->save($data)) {
-
+//tomo el id del producto recien insertado
             $idproducto = $this->Productos_model->lastID();
-
+//preparo datos para la tabla almacen
             $data1 = array(
                 'sucursal_id' => $sucursal,
                 'producto_id' => $idproducto,
                 'cantidad'    => $cantidad,
             );
 
-            //falta chequear si no se incluye en tabla almacenes
+            //inserto en tabla almacen este producto
 
             $this->Almacenes_model->save($data1);
 

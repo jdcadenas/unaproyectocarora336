@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -11,9 +11,9 @@
 |
 |   Default: TRUE
 |
-*/
+ */
 
-$config['parser_enabled'] = TRUE;
+$config['parser_enabled'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +26,9 @@ $config['parser_enabled'] = TRUE;
 |
 |   Default: FALSE
 |
-*/
+ */
 
-$config['parser_body_enabled'] = FALSE;
+$config['parser_body_enabled'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ $config['parser_body_enabled'] = FALSE;
 |
 |   Default: ' | '
 |
-*/
+ */
 
 $config['title_separator'] = ' | ';
 
@@ -54,7 +54,7 @@ $config['title_separator'] = ' | ';
 |
 |   Default: 'default'
 |
-*/
+ */
 
 $config['layout'] = 'default';
 
@@ -69,7 +69,7 @@ $config['layout'] = 'default';
 |
 |   Default: ''
 |
-*/
+ */
 
 $config['theme'] = '';
 
@@ -82,55 +82,54 @@ $config['theme'] = '';
 |
 | Default: array(APPPATH.'themes/' => '../themes/')
 |
-*/
+ */
 
 $config['theme_locations'] = array(
-  APPPATH.'themes/'
+    APPPATH . 'themes/',
 );
-
 
 $template['active_template'] = 'gentelella';
 
 $template['bootstrap']['template'] = 'template/bootstrap.php';
-$template['bootstrap']['regions'] = array(
-   'header',
-   'content',
-   'footer' => array(
+$template['bootstrap']['regions']  = array(
+    'header',
+    'content',
+    'footer' => array(
         'content' => array('<p>Copyright &copy;Ajhoel Tragedy</p>'),
     ),
 );
 
-$template['bootstrap']['parser'] = 'parser';
-$template['bootstrap']['parser_method'] = 'parse';
-$template['bootstrap']['parse_template'] = FALSE;
+$template['bootstrap']['parser']         = 'parser';
+$template['bootstrap']['parser_method']  = 'parse';
+$template['bootstrap']['parse_template'] = false;
 
 $template['default']['template'] = 'template/simple.php';
-$template['default']['regions'] = array(
-   'title' => array('content' => array('Ajhoel Tragedy Template')),
-   'header',
-   'content',
-   'navs',
-   'footer' => array(
+$template['default']['regions']  = array(
+    'title'  => array('content' => array('Ajhoel Tragedy Template')),
+    'header',
+    'content',
+    'navs',
+    'footer' => array(
         'content' => array('<p>Ajhoel Tragedy &copy;2017</p>'),
     ),
 );
 
-$template['default']['parser'] = 'parser';
-$template['default']['parser_method'] = 'parse';
-$template['default']['parse_template'] = FALSE;
+$template['default']['parser']         = 'parser';
+$template['default']['parser_method']  = 'parse';
+$template['default']['parse_template'] = false;
 
 $template['gentelella']['template'] = 'template/gentelella.php';
-$template['gentelella']['regions'] = array(
-   'title' => array('content' => array('Ajhoel Tragedy Template')),
-   'header',
-   'navs',
-   'sidenavs',
-   'content',
-   'footer' => array(
+$template['gentelella']['regions']  = array(
+    'title'  => array('content' => array('Ajhoel Tragedy Template')),
+    'header',
+    'navs',
+    'sidenavs',
+    'content',
+    'footer' => array(
         'content' => array('Ajhoel Tragedy &copy;2017'),
     ),
 );
 
-$template['gentelella']['parser'] = 'parser';
-$template['gentelella']['parser_method'] = 'parse';
-$template['gentelella']['parse_template'] = FALSE;
+$template['gentelella']['parser']         = 'parser';
+$template['gentelella']['parser_method']  = 'parse';
+$template['gentelella']['parse_template'] = false;

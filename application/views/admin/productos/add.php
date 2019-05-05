@@ -55,11 +55,17 @@
   <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12">Sucursal</label>
     <div class="col-md-9 col-sm-9 col-xs-12">
-      <select class="form-control" name="sucursal">
+       <select class="form-control" readonly   name="sucursal" id="sucursal">
         <?php foreach ($sucursales as $sucursal): ?>
-        <option value="<?php echo $sucursal->id ?>">
-          <?php echo $sucursal->nombre . " ubicación: " . $sucursal->ubicacion ?>
+        <?php if ($sucursal->id == $ids): ?>
+        <option value="<?php echo $sucursal->id ?>" selected>
+          <?php echo $sucursal->id . '' . $sucursal->nombre ?>
         </option>
+        <?php else: ?>
+        <option value="<?php echo $sucursal->id ?>" >
+          <?php echo $sucursal->id . '' . $sucursal->nombre ?>
+        </option>
+        <?php endif?>
         <?php endforeach;?>
       </select>
     </div>

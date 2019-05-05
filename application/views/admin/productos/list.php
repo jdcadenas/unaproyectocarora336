@@ -1,6 +1,26 @@
 <div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12">
-    <a href="<?php echo base_url() ?>productos/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Productos</a>
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <a href="<?php echo base_url() ?>productos/add/<?php echo $ids ?>" class="btn btn-primary btn-flat">
+      <span class="fa fa-plus"></span>Agregar Productos</a>
+  </div>
+   <label class="control-label col-md-6 col-sm-6 col-xs-2 alert-info align-content-md-betweens">Sucursal</label>
+   <div class="col-md-6 col-sm-6 col-xs-4">
+
+
+ <select class="form-control"name="sucursalselect" id="sucursalselect">
+        <?php foreach ($sucursales as $sucursal): ?>
+        <?php if ($sucursal->id == $ids): ?>
+        <option value="<?php echo $sucursal->id ?>" selected>
+          <?php echo $sucursal->id . '' . $sucursal->nombre ?>
+        </option>
+        <?php else: ?>
+        <option value="<?php echo $sucursal->id ?>" >
+          <?php echo $sucursal->id . '' . $sucursal->nombre ?>
+        </option>
+        <?php endif?>
+        <?php endforeach;?>
+      </select>
+
   </div>
 </div>
 <div class="clearfix"></div>
@@ -16,7 +36,7 @@
             <th class="column-title">precio</th>
             <th class="column-title">cantidad</th>
             <th class="column-title">linea</th>
-             <th class="column-title">Ubicación</th>
+            <th class="column-title">Ubicación</th>
             <th class="column-title "><span class="nobr">Opciones</span>
           </th>
         </tr>
@@ -30,7 +50,7 @@
         <td class=" "><?php echo $producto->precio; ?></td>
         <td class=" "><?php echo $producto->cantidadAlmacen; ?></td>
         <td class=" "><?php echo $producto->lnombre; ?></td>
-        <td class=" "><?php echo $producto->sucursal . " " . $producto->ubicacion; ?></td>
+        <td class=" "><?php echo $producto->id_sucursal . ' >>' . $producto->sucursal . " " . $producto->ubicacion; ?></td>
         <td class=" last">
           <div class="btn-group">
             <button type="button" class="btn btn-info btn-view-emple" data-toggle="modal" data-target=".bs-example-modal-lg" value="<?php echo $producto->id_producto ?>"><span class="fa fa-search"></span></button>
@@ -69,5 +89,6 @@
 <!-- //Large modal -->
 <script>
 //agregado personal
-var base_url= "<?php echo base_url(); ?>"
+var base_url= "<?php echo base_url(); ?>";
+
 </script>

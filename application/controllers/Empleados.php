@@ -55,18 +55,25 @@ class Empleados extends CI_Controller
         $correo      = $this->input->post('correo');
         $usuario     = $this->input->post('usuario');
         $clave       = $this->input->post('clave');
-        $data        = array('cedula' => $cedula,
-            'nombre'                      => $nombre,
-            'apellido'                    => $apellido,
-            'telefono'                    => $telefono,
-            'correo'                      => $correo,
-            'usuario'                     => $usuario,
-            'clave'                       => $clave,
-            'estado'                      => '1',
-            'rol_id'                      => '4',
+        $rol         = $this->input->post('rol');
+        $sucursal_id = $this->input->post('sucursal');
+
+        $data = array(
+            'cedula'      => $cedula,
+            'nombre'      => $nombre,
+            'apellido'    => $apellido,
+            'telefono'    => $telefono,
+            'correo'      => $correo,
+            'usuario'     => $usuario,
+            'clave'       => sha1($clave),
+            'estado'      => '1',
+            'rol_id'      => $rol,
+            'sucursal_id' => $sucursal_id,
         );
         $resp = $this->Empleados_model->update($id_empleado, $data);
+
         if (!$resp) {
+
             log_message($this->Empleados_model->update($id_empleado, $data));
             $this->session->set_flashdata('error', 'No se pudo guardar la información');
             redirect(base_url() . 'empleados/edit/' . $id_empleado);
@@ -76,25 +83,26 @@ class Empleados extends CI_Controller
     }
     public function store()
     {
-        $cedula   = $this->input->post('cedula');
-        $nombre   = $this->input->post('nombre');
-        $apellido = $this->input->post('apellido');
-        $telefono = $this->input->post('telefono');
-        $correo   = $this->input->post('correo');
-        $usuario  = $this->input->post('usuario');
-        $clave    = $this->input->post('clave');
-        $rol      = $this->input->post('rol');
-        $sucursal = $this->input->post('sucursal');
-        $data     = array('cedula' => $cedula,
-            'nombre'                   => $nombre,
-            'apellido'                 => $apellido,
-            'telefono'                 => $telefono,
-            'correo'                   => $correo,
-            'usuario'                  => $usuario,
-            'clave'                    => $clave,
-            'estado'                   => '1',
-            'rol_id'                   => $rol,
-            'sucursal_id'              => $sucursal,
+        $cedula      = $this->input->post('cedula');
+        $nombre      = $this->input->post('nombre');
+        $apellido    = $this->input->post('apellido');
+        $telefono    = $this->input->post('telefono');
+        $correo      = $this->input->post('correo');
+        $usuario     = $this->input->post('usuario');
+        $clave       = $this->input->post('clave');
+        $rol         = $this->input->post('rol');
+        $sucursal_id = $this->input->post('sucursal');
+        $data        = array(
+            'cedula'      => $cedula,
+            'nombre'      => $nombre,
+            'apellido'    => $apellido,
+            'telefono'    => $telefono,
+            'correo'      => $correo,
+            'usuario'     => $usuario,
+            'clave'       => $clave,
+            'estado'      => '1',
+            'rol_id'      => $rol,
+            'sucursal_id' => $sucursal_id,
         );
         if ($this->Empleados_model->save($data)) {
             redirect(base_url() . 'empleados', 'refresh');
@@ -105,7 +113,12 @@ class Empleados extends CI_Controller
     }
     public function edit($id)
     {
-        $data = array('empleado' => $this->Empleados_model->getEmpleado($id));
+        $data = array(
+            'empleado'   => $this->Empleados_model->getEmpleado($id),
+            'roles'      => $this->Roles_model->getRoles(),
+            'sucursales' => $this->Sucursales_model->getSucursales(),
+        );
+
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
         $this->template->write('title', 'Empleados  <small>Edición</small>', true);

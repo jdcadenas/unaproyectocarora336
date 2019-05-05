@@ -11,7 +11,7 @@
 	<div class="col-xs-6">
 		<b>VENDEDOR</b><br>
 		<b>Nombre:</b>
-		 <?php echo $venta->nombrevendedor . " " . $venta->apellidovendedor; ?> <br>
+		 <?php echo $venta->vendedor . " " . $venta->apellidovendedor; ?> <br>
 		<b>Cédula:</b> <?php echo $venta->cedula ?><br>
 		<b>Teléfono:</b><?php echo $venta->telefono ?> <br>
 		<b>Correo</b> <?php echo $venta->correo ?><br>

@@ -5,10 +5,19 @@ class Ventas_model extends CI_Model
 
     public function getVentas()
     {
-        $this->db->select("v.*,e.nombre as vendedor, s.nombre as sucursal");
+        $this->db->select("
+            v.*,e.nombre as vendedor,
+            e.apellido as apellidovendedor,
+            e.correo,e.telefono,
+            e.correo,e.cedula,
+            s.nombre as sucursal,
+            s.ubicacion
+            ");
         $this->db->from('ventas v');
         $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
-        $this->db->join('sucursales s', 'e.sucursal_id = s.id');
+        $this->db->join('sucursales s', 's.id = e.id_empleado');
+        $this->db->order_by('s.id', 'asc');
+        $this->db->order_by('e.id_empleado', 'asc');
         $resultados = $this->db->get();
 
         if ($resultados->num_rows() > 0) {
@@ -16,6 +25,33 @@ class Ventas_model extends CI_Model
         } else {
             return false;
         }
+    }
+    public function getVentasByDate($fechainicio, $fechafin)
+    {
+        $this->db->select("
+            v.*,e.nombre as vendedor,
+            e.apellido as apellidovendedor,
+            e.correo,e.telefono,
+            e.correo,e.cedula,
+            s.nombre as sucursal,
+            s.ubicacion
+            ");
+        $this->db->from('ventas v');
+        $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
+        $this->db->join('sucursales s', 's.id = e.id_empleado');
+        $this->db->where('v.fecha_venta >=', $fechainicio);
+        $this->db->where('v.fecha_venta <=', $fechafin);
+        $this->db->order_by('s.id', 'asc');
+        $this->db->order_by('e.id_empleado', 'asc');
+
+        $resultados = $this->db->get();
+
+        if ($resultados->num_rows() > 0) {
+            return $resultados->result();
+        } else {
+            return false;
+        }
+
     }
 
     public function getproductos($valor, $sucursal)
@@ -79,7 +115,14 @@ class Ventas_model extends CI_Model
 
     public function getVentemplesucu($id)
     {
-        $this->db->select("v.*,e.nombre as nombrevendedor,e.apellido as apellidovendedor,e.correo,e.telefono, e.correo,e.cedula,s.nombre as sucursal,s.ubicacion");
+        $this->db->select("
+            v.*,e.nombre as vendedor,
+            e.apellido as apellidovendedor,
+            e.correo,e.telefono,
+            e.correo,e.cedula,
+            s.nombre as sucursal,
+            s.ubicacion
+            ");
         $this->db->from('ventas v');
         $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
         $this->db->join('sucursales s', 's.id = e.id_empleado');

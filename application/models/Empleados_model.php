@@ -22,9 +22,13 @@ class Empleados_model extends CI_Model
 
     public function getEmpleados()
     {
-        $this->db->where('estado', "1");
+        $this->db->select('e.*,s.nombre as sucursal,r.rol as rol');
+        $this->db->from('empleados e');
+        $this->db->join('sucursales s', 's.id = e.sucursal_id');
+        $this->db->join('roles r', 'r.id_rol = e.rol_id');
+        $this->db->where('e.estado', "1");
 
-        $resultados = $this->db->get('empleados');
+        $resultados = $this->db->get();
         return $resultados->result();
     }
 

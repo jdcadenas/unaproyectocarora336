@@ -77,7 +77,7 @@ class Ventas extends CI_Controller
             'sucursal_id' => $id_sucursal,
 
         );
-// verifico que se ingrese la venta
+// verifico que se ingrese en la tabla ventas
 
         if ($this->Ventas_model->save($data)) {
 
