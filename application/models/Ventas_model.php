@@ -97,6 +97,22 @@ s.ubicacion
         $resultado = $this->db->get();
         return $resultado->row();
     }
+    public function getVentaVendedorTotales($id)
+    {
+        $this->db->select_sum('v.total', 'Totales');
+        $this->db->from('ventas v');
+        $this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
+        $this->db->join('sucursales s', 's.id =  v.sucursal_id');
+        $this->db->where('e.id_empleado', $id);
+        $resultado = $this->db->get();
+        return $resultado->row();
+        /* select sum(v.total) as 'Totales'
+    from ventas v
+    join empleados e on v.empleado_id = e.id_empleado
+    join sucursales s on s.id =  v.sucursal_id
+    where  e.id_empleado = 2*/
+    }
+
     public function getVenta($id)
     {
         $this->db->where('id_venta', $id);
