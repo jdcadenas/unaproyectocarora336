@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
-    <a href="<?php echo base_url() ?>movimientos/ventas/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Ventas</a>
+    <a href="<?php echo base_url() ?>movimientos/ventas/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Ventas</a>
   </div>
 </div>
 <div class="clearfix"></div>
@@ -24,7 +24,7 @@
         <?php foreach ($ventas as $venta): ?>
         <td class=" "><?php echo $venta->id_venta; ?></td>
         <td class=" "><?php echo $venta->fecha_venta; ?></td>
-        <td class=" "><?php echo $venta->total; ?></td>
+        <td class="a-right a-right "><?php echo $venta->total; ?></td>
         <td class=" "><?php echo $venta->vendedor; ?></td>
         <td class=" "><?php echo $venta->sucursal; ?></td>
         <td class=" last">

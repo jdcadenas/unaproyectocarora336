@@ -1025,24 +1025,25 @@ $(document).ready(function() {
             }
         });
     });
+    //buscar empleado
     $(document).on('click', ".btn-check", function() {
         empleado = $(this).val();
         infoempleado = empleado.split("*");
-        //$('#empleado_id').val(infoempleado[0]);
-        //  $('#empleado').val('id:'+infoempleado[0]+' '+infoempleado[2] + ' ' + infoempleado[3]);
         $('#id_empleado').val(infoempleado[0]);
         $('#empleado').val(infoempleado[2] + ' ' + infoempleado[3]);
-        $("modal-default").modal("hide");
+        $("#modal-default").modal("hide");
         return false;
     });
+    //boton para buscar sucursal
     $(document).on('click', ".btn-check-sucur", function() {
         sucursal = $(this).val();
         infosucursal = sucursal.split("*");
         $('#id_sucursal').val(infosucursal[0]);
         $('#sucursal').val(infosucursal[1] + " Ubicación: " + infosucursal[2]);
-        $("modal-default").modal("hide");
+        $("#modal-default-sucursal").modal("hide");
         return false;
     });
+    //autocompletar producto
     $('#producto').autocomplete({
         source: function(request, response) {
             $.ajax({
@@ -1089,6 +1090,15 @@ $(document).ready(function() {
         $(this).closest('tr').remove();
         sumar();
     });
+    $(document).on('click', '.btn-agregar-productos', function(event) {
+        event.preventDefault();
+        href = $(this).attr('href');
+        if ($('#sucursalselect').val() == 0) {
+            alert("Debe seleccionar una sucursal de depósito");
+        } else {
+            window.location = href;
+        }
+    });
     $(document).on('keyup', '#tbventas input.cantidades', function(event) {
         cantidad = $(this).val();
         precio = $(this).closest('tr').find('td:eq(2)').text();
@@ -1097,6 +1107,7 @@ $(document).ready(function() {
         $(this).closest('tr').find('td:eq(5)').children('input').val(subtotal.toFixed(2));
         sumar();
     });
+    //para ver detalle de venta en listado de todas las ventas
     $(document).on('click', '.btn-view-venta', function(event) {
         valor_id = $(this).val();
         $.ajax({
@@ -1118,7 +1129,27 @@ $(document).ready(function() {
     });
     $(document).on('change', '#sucursalselect', function(event) {
         valor_id = $(this).val();
-        window.location.href = base_url + "productos/" + valor_id;
+        // alert(ruta);
+        $.ajax({
+            url: base_url + "productos/" + valor_id,
+            type: 'GET',
+            success: function(resp) {
+                //  alert(base_url + resp);
+                window.location.href = base_url + "productos/" + valor_id;
+            }
+        });
+    });
+    $(document).on('change', '#sucursalselectcatalogo', function(event) {
+        valor_id = $(this).val();
+        // alert(ruta);
+        $.ajax({
+            url: base_url + "productos/catalogo/" + valor_id,
+            type: 'GET',
+            success: function(resp) {
+                //  alert(base_url + resp);
+                window.location.href = base_url + "productos/catalogo/" + valor_id;
+            }
+        });
     });
     //fin de document ready
 });

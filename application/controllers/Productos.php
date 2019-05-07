@@ -16,7 +16,7 @@ class Productos extends CI_Controller
         $this->load->model('Almacenes_model');
     }
 
-    public function index($ids = 1)
+    public function index($ids = 0)
     {
 
         $data = array(
@@ -33,6 +33,22 @@ class Productos extends CI_Controller
         $this->template->render();
     }
 
+    public function catalogo($ids = 0)
+    {
+
+        $data = array(
+            'ids'        => $ids,
+            'productos'  => $this->Productos_model->getProductos($ids),
+            'sucursales' => $this->Sucursales_model->getSucursales(),
+        );
+
+        $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
+        $this->template->write_view('navs', 'template/default_topnavs.php', true);
+        $this->template->write('title', 'Productos', true);
+
+        $this->template->write_view('content', 'admin/productos/catalogo', $data, true);
+        $this->template->render();
+    }
     public function add($ids)
     {
         $data = array(
@@ -58,9 +74,15 @@ class Productos extends CI_Controller
 
     public function delete($id)
     {
+        $producto = $this->Productos_model->getProducto($id);
+        if (!empty($producto->imagen_producto)) {
+
+            unlink($producto->imagen_producto);
+        }
         $data = array('estado' => '0');
         $this->Productos_model->update($id, $data);
-        echo "productos";
+
+        redirect('productos', 'refresh');
     }
 
     public function update()
@@ -73,31 +95,32 @@ class Productos extends CI_Controller
         $cantidad    = $this->input->post('cantidad');
         $linea       = $this->input->post('linea');
         $sucursal    = $this->input->post('sucursal');
+
 //preparo para actualizar tabla productos
         $data = array(
             'codigo' => $codigo,
             'nombre' => $nombre,
             'precio' => $precio,
-
             'linea'  => $linea,
             'estado' => '1',
 
         );
 //actualizo la tabla productos segun id
         $resp = $this->Productos_model->update($id_producto, $data);
+
         if (!$resp) {
 
             $this->session->set_flashdata('error', 'No se pudo guardar la información');
             redirect(base_url() . 'productos/edit/' . $id_producto . '/' . $sucursal);
 
         } else {
-
             //modifico la cantidad en almacen
             $data1 = array(
                 'cantidad' => $cantidad,
             );
 
             $this->Almacenes_model->update($sucursal, $id_producto, $data1);
+//modificar imagen
 
             redirect(base_url() . 'productos', 'refresh');
         }
@@ -106,19 +129,22 @@ class Productos extends CI_Controller
     public function store()
     {
         //recibo datos del formulario de productos de almacen
-        $codigo   = $this->input->post('codigo');
-        $nombre   = $this->input->post('nombre');
-        $cantidad = $this->input->post('cantidad');
-        $precio   = $this->input->post('precio');
-        $linea    = $this->input->post('linea');
-        $sucursal = $this->input->post('sucursal');
-        //datso para ingresar en tabla productos
+        $codigo          = $this->input->post('codigo');
+        $nombre          = $this->input->post('nombre');
+        $cantidad        = $this->input->post('cantidad');
+        $precio          = $this->input->post('precio');
+        $linea           = $this->input->post('linea');
+        $sucursal        = $this->input->post('sucursal');
+        $imagen_producto = $this->input->post('imagen_producto');
+
+        //datos para ingresar en tabla productos
         $data = array(
-            'codigo'   => $codigo,
-            'nombre'   => $nombre,
-            'cantidad' => $cantidad,
-            'precio'   => $precio,
-            'linea'    => $linea,
+            'codigo'          => $codigo,
+            'nombre'          => $nombre,
+            'cantidad'        => $cantidad,
+            'precio'          => $precio,
+            'linea'           => $linea,
+            'imagen_producto' => $imagen_producto,
         );
 //registro en tabla productos
         if ($this->Productos_model->save($data)) {

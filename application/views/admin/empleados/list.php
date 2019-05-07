@@ -12,9 +12,9 @@
           <tr class="headings">
             <th class="column-title"># </th>
             <th class="column-title">Cédula</th>
-            <th class="column-title">Sombre</th>
-            <th class="column-title">Spellido</th>
-            <th class="column-title">Selefono</th>
+            <th class="column-title">Nombre</th>
+            <th class="column-title">Apellido</th>
+            <th class="column-title">Teléfono</th>
             <th class="column-title">Correo</th>
             <th class="column-title">Rol</th>
             <th class="column-title">Sucursal</th>
@@ -32,7 +32,7 @@
         <td class=" "><?php echo $empleado->telefono; ?></td>
         <td class=" "><?php echo $empleado->correo; ?></td>
          <td class=" "><?php echo $empleado->rol; ?></td>
-          <td class=" "><?php echo $empleado->correo; ?></td>
+          <td class=" "><?php echo $empleado->sucursal; ?></td>
         <td class=" last">
           <div class="btn-group">
             <button type="button" class="btn btn-info btn-view-emple" data-toggle="modal" data-target=".bs-example-modal-lg" value="<?php echo $empleado->id_empleado ?>"><span class="fa fa-search"></span></button>

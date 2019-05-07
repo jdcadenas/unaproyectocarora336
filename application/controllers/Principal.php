@@ -31,8 +31,8 @@ class Principal extends CI_Controller
 
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
-        $this->template->write('title', 'Dashboard', true);
-        $this->template->write('header', 'Dashboard');
+        $this->template->write('title', 'Principal', true);
+
         $this->template->write_view('content', 'admin/principal', $data, true);
 
         $this->template->render();

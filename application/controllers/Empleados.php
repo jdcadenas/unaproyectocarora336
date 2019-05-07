@@ -16,8 +16,8 @@ class Empleados extends CI_Controller
         $data = array('empleados' => $this->Empleados_model->getEmpleados());
         $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
         $this->template->write_view('navs', 'template/default_topnavs.php', true);
-        $this->template->write('title', 'Listado de Empleados', true);
-        $this->template->write('header', 'Listado de Empleados');
+        $this->template->write('title', 'Empleados', true);
+        $this->template->write('header', 'Empleados <small>Listado</small>');
         $this->template->write_view('content', 'admin/empleados/list', $data);
         $this->template->render();
     }

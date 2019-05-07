@@ -11,7 +11,7 @@
         <?php endif;?>
         <br />
         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
-          action="<?php echo base_url(); ?>productos/store" method="post">
+          action="<?php echo base_url(); ?>productos/store" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cedula">Código <span class="required">*</span>
           </label>
@@ -55,7 +55,7 @@
   <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12">Sucursal</label>
     <div class="col-md-9 col-sm-9 col-xs-12">
-       <select class="form-control" readonly   name="sucursal" id="sucursal">
+      <select class="form-control" readonly   name="sucursal" id="sucursal">
         <?php foreach ($sucursales as $sucursal): ?>
         <?php if ($sucursal->id == $ids): ?>
         <option value="<?php echo $sucursal->id ?>" selected>
@@ -71,16 +71,11 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12">Estado</label>
+    <label class="control-label col-md-3 col-sm-3 col-xs-12">Imagen</label>
     <div class="col-md-6 col-sm-6 col-xs-12">
-      <div id="estado" class="btn-group" data-toggle="buttons">
-        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-          <input type="radio" name="estado" value="1"> &nbsp; Activado &nbsp;
-        </label>
-        <label class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-          <input type="radio" name="estado" value="1"> Activado
-        </label>
-      </div>
+      <span class="btn btn-info btn-file">
+        <input type="file" name="imagen_producto" value="" placeholder="">
+      </span>
     </div>
   </div>
   <div class="ln_solid"></div>

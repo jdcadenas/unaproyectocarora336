@@ -22,27 +22,27 @@
         <h3>General</h3>
         <ul class="nav side-menu">
           <li><a href="<?php echo base_url('principal') ?>"><i class="fa fa-home"></i> Inicio</a>
-          <li><a href="<?php echo base_url('movimientos/ventas') ?>">Ventas</a></li>
+          <li><a href="<?php echo base_url('productos/catalogo') ?>"><i class="fa fa-book"></i>Catálogo Prooductos</a></li>
+          <li><a href="<?php echo base_url('movimientos/ventas') ?>"><i class="fa fa-shopping-cart"></i>Ventas</a></li>
+          <li><a ><i class="fa fa-edit"></i> Mantenimiento <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="<?php echo base_url('productos') ?>">Productos (Stock)</a></li>
+            <li><a href="<?php echo base_url('sucursales') ?>">Sucursales</a></li>
+            <li><a href="<?php echo base_url('Lineas') ?>">Líneas</a></li>
+            <li><a href="<?php echo base_url('empleados') ?>">Empleados</a></li>
+          </ul>
         </li>
-        <li><a ><i class="fa fa-edit"></i> Mantenimiento <span class="fa fa-chevron-down"></span></a>
+        <li><a><i class="fa fa-th-list"></i> Reportes <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="<?php echo base_url('productos') ?>">Productos (Stock)</a></li>
-          <li><a href="<?php echo base_url('sucursales') ?>">Sucursales</a></li>
-          <li><a href="<?php echo base_url('Lineas') ?>">Líneas</a></li>
-          <li><a href="<?php echo base_url('empleados') ?>">Empleados</a></li>
+          <li><a href="<?php echo base_url('reportes/ventas') ?>">Ventas por Fechas</a></li>
+          <li><a href="<?php echo base_url('reportes/ventas/vendedor') ?>">Ventas por Vendedor</a></li>
+          <li><a href="<?php echo base_url('reportes/ventas/sucursal') ?>">Ventas por Sucursal</a></li>
+          <li><a href="<?php echo base_url('reportes/ventas/productos') ?>">Históricos de productos</a></li>
         </ul>
       </li>
-      <li><a><i class="fa fa-edit"></i> Reportes <span class="fa fa-chevron-down"></span></a>
-      <ul class="nav child_menu">
-        <li><a href="<?php echo base_url('reportes/ventas') ?>">Ventas</a></li>
-        <li><a href="<?php echo base_url('example/table_ex') ?>">Table</a></li>
-        <li><a href="<?php echo base_url('example/table_dyn_ex') ?>">Table Dynamics</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
+    </ul>
+  </div>
 </div>
 <!-- /Sidebar Menu -->
-
 </div>
 </div>

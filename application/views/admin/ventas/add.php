@@ -25,7 +25,7 @@
               <div class="input-group">
                 <input type="hidden" class="form-control" name="id_sucursal" id="id_sucursal">
 
-                <input type="text" class="form-control" name="sucursal" id="sucursal">
+                <input type="text" class="form-control" readonly="true" name="sucursal" id="sucursal">
 
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default-sucursal" >
@@ -45,7 +45,7 @@
               <div class="input-group">
                 <input type="hidden" class="form-control" name="id_empleado" id="id_empleado">
 
-                <input type="text" class="form-control" name="empleado" id="empleado">
+                <input type="text" class="form-control" name="empleado" id="empleado" readonly="true">
 
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default" ><span class="fa fa-search"></span> Buscar</button>
@@ -129,7 +129,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Lita de Empleados</h4>
+        <h4 class="modal-title">Lista de Empleados</h4>
       </div>
       <div class="modal-body">
         <table id="datatable-responsive" class="table table-bordered table-striped table-hover">
