@@ -1,109 +1,109 @@
 <?php if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
+	exit('No direct script access allowed');
 }
 
-class Ventas extends CI_Controller
-{
+class Ventas extends CI_Controller {
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('Ventas_model');
-    }
+	public function __construct() {
+		parent::__construct();
+		$this->load->model('Ventas_model');
+		$this->load->model('Empleados_model');
+	}
 
-    public function index()
-    {
-        $fechainicio = $this->input->post('fechainicio');
-        $fechafin    = $this->input->post('fechafin');
-        if ($this->input->post('buscar')) {
-            $ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
-        } else {
-            $ventas = $this->Ventas_model->getventas();
-        }
+	public function index() {
+		$fechainicio = $this->input->post('fechainicio');
+		$fechafin = $this->input->post('fechafin');
+		if ($this->input->post('buscar')) {
+			$ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
+		} else {
+			$ventas = $this->Ventas_model->getventas();
+		}
 
-        $data = array(
-            'ventas'      => $ventas,
-            'fechainicio' => $fechainicio,
-            'fechafin'    => $fechafin,
+		$data = array(
+			'ventas' => $ventas,
+			'fechainicio' => $fechainicio,
+			'fechafin' => $fechafin,
 
-        );
-        $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
-        $this->template->write_view('navs', 'template/default_topnavs.php', true);
-        $this->template->write('title', 'Reporte Ventas', true);
-        $this->template->write('header', 'Reporte Ventas');
-        $this->template->write_view('content', 'admin/reportes/ventas', $data);
-        $this->template->render();
-    }
-    public function vendedor()
-    {
-        $fechainicio = $this->input->post('fechainicio');
-        $fechafin    = $this->input->post('fechafin');
-        if ($this->input->post('buscar')) {
-            $ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
-        } else {
-            $ventas = $this->Ventas_model->getventas();
-        }
+		);
+		$this->template->write_view('sidenavs', 'template/default_sidenavs', true);
+		$this->template->write_view('navs', 'template/default_topnavs.php', true);
+		$this->template->write('title', 'Reporte Ventas', true);
+		$this->template->write('header', 'Reporte Ventas');
+		$this->template->write_view('content', 'admin/reportes/ventas', $data);
+		$this->template->render();
+	}
+	public function vendedor($ide = 0) {
 
-        $data = array(
-            'ventas'      => $ventas,
-            'fechainicio' => $fechainicio,
-            'fechafin'    => $fechafin,
+		$vendedor = $this->input->post('repovendedorselect');
+		$fechainicio = $this->input->post('fechainicio');
+		$fechafin = $this->input->post('fechafin');
+		if ($this->input->post('buscar')) {
+			$ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
+		} else {
+			$ventas = $this->Ventas_model->getventas();
+		}
 
-        );
-        $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
-        $this->template->write_view('navs', 'template/default_topnavs.php', true);
-        $this->template->write('title', 'Reporte Ventas', true);
-        $this->template->write('header', 'Reporte Ventas');
-        $this->template->write_view('content', 'admin/reportes/vendedor', $data);
-        $this->template->render();
-    }
+		$data = array(
+			'ide' => $ide,
+			'ventas' => $ventas,
+			'fechainicio' => $fechainicio,
+			'fechafin' => $fechafin,
+			'vendedores' => $this->Empleados_model->getEmpleadosVendedores(),
 
-    public function sucursal()
-    {
-        $fechainicio = $this->input->post('fechainicio');
-        $fechafin    = $this->input->post('fechafin');
-        if ($this->input->post('buscar')) {
-            $ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
-        } else {
-            $ventas = $this->Ventas_model->getventas();
-        }
+		);
 
-        $data = array(
-            'ventas'      => $ventas,
-            'fechainicio' => $fechainicio,
-            'fechafin'    => $fechafin,
+		$this->template->write_view('sidenavs', 'template/default_sidenavs', true);
+		$this->template->write_view('navs', 'template/default_topnavs.php', true);
+		$this->template->write('title', 'Reporte Ventas', true);
+		$this->template->write('header', 'Reporte Ventas');
+		$this->template->write_view('content', 'admin/reportes/vendedor', $data);
+		$this->template->render();
+	}
 
-        );
-        $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
-        $this->template->write_view('navs', 'template/default_topnavs.php', true);
-        $this->template->write('title', 'Reporte Ventas', true);
-        $this->template->write('header', 'Reporte Ventas');
-        $this->template->write_view('content', 'admin/reportes/sucursal', $data);
-        $this->template->render();
-    }
-    public function productos()
-    {
-        $fechainicio = $this->input->post('fechainicio');
-        $fechafin    = $this->input->post('fechafin');
-        if ($this->input->post('buscar')) {
-            $ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
-        } else {
-            $ventas = $this->Ventas_model->getventas();
-        }
+	public function sucursal() {
+		$fechainicio = $this->input->post('fechainicio');
+		$fechafin = $this->input->post('fechafin');
+		if ($this->input->post('buscar')) {
+			$ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
+		} else {
+			$ventas = $this->Ventas_model->getventas();
+		}
 
-        $data = array(
-            'ventas'      => $ventas,
-            'fechainicio' => $fechainicio,
-            'fechafin'    => $fechafin,
+		$data = array(
+			'ventas' => $ventas,
+			'fechainicio' => $fechainicio,
+			'fechafin' => $fechafin,
 
-        );
-        $this->template->write_view('sidenavs', 'template/default_sidenavs', true);
-        $this->template->write_view('navs', 'template/default_topnavs.php', true);
-        $this->template->write('title', 'Reporte Ventas', true);
-        $this->template->write('header', 'Reporte Ventas');
-        $this->template->write_view('content', 'admin/reportes/productos', $data);
-        $this->template->render();
-    }
+		);
+		$this->template->write_view('sidenavs', 'template/default_sidenavs', true);
+		$this->template->write_view('navs', 'template/default_topnavs.php', true);
+		$this->template->write('title', 'Reporte Ventas', true);
+		$this->template->write('header', 'Reporte Ventas');
+		$this->template->write_view('content', 'admin/reportes/sucursal', $data);
+		$this->template->render();
+	}
+	public function productos() {
+		$fechainicio = $this->input->post('fechainicio');
+		$fechafin = $this->input->post('fechafin');
+		if ($this->input->post('buscar')) {
+			$ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
+		} else {
+			$ventas = $this->Ventas_model->getventas();
+		}
+
+		$data = array(
+			'ventas' => $ventas,
+			'fechainicio' => $fechainicio,
+			'fechafin' => $fechafin,
+
+		);
+		$this->template->write_view('sidenavs', 'template/default_sidenavs', true);
+		$this->template->write_view('navs', 'template/default_topnavs.php', true);
+		$this->template->write('title', 'Reporte Ventas', true);
+		$this->template->write('header', 'Reporte Ventas');
+		$this->template->write_view('content', 'admin/reportes/productos', $data);
+		$this->template->render();
+	}
 
 }
 

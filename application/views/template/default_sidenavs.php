@@ -28,7 +28,7 @@
           <ul class="nav child_menu">
             <li><a href="<?php echo base_url('productos') ?>">Productos (Stock)</a></li>
             <li><a href="<?php echo base_url('sucursales') ?>">Sucursales</a></li>
-            <li><a href="<?php echo base_url('Lineas') ?>">Líneas</a></li>
+            <li><a href="<?php echo base_url('lineas') ?>">Líneas</a></li>
             <li><a href="<?php echo base_url('empleados') ?>">Empleados</a></li>
           </ul>
         </li>

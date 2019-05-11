@@ -977,7 +977,8 @@ function init_DataTables() {
                 "next": "Siguiente",
                 "previous": "Anterior"
             },
-        }
+        },
+        "order": [[ 0, "desc" ]]
     });
 };
 $(document).ready(function() {
@@ -1151,6 +1152,7 @@ $(document).ready(function() {
             }
         });
     });
+    
     //fin de document ready
 });
 

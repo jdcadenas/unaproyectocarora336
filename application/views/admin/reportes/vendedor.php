@@ -1,5 +1,8 @@
 <div class="box box-solid">
   <div class="box-body">
+
+
+
     <div class="row">
       <form action="<?php echo current_url(); ?>" method="post" accept-charset="utf-8" class="form-horizontal">
         <div class="form-group">
@@ -18,6 +21,33 @@
             </div>
           </div>
         </div>
+
+
+<div class="row">
+<div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-left top_search">
+      <select class="form-control"name="repovendedorselect" id="repovendedorselect">
+        <option value="0">Seleccione el vendedor ...</option>
+            <?php if (!empty($vendedores)): ?>
+               <?php foreach ($vendedores as $vendedor): ?>
+                  <?php if ($vendedor->id_empleado == $ide): ?>
+                      <option value="<?php echo $vendedor->id ?>" selected>
+                          <?php echo $vendedor->id_empleado . 'Sucursal ' . $vendedor->sucursal . ' Nombre: ' . $vendedor->nombre ?>
+                      </option>
+                  <?php else: ?>
+                      <option value="<?php echo $vendedor->id_empleado ?>" >
+                          <?php echo $vendedor->id_empleado . 'Sucursal ' . $vendedor->sucursal . ' Nombre: ' . $vendedor->nombre ?>
+                      </option>
+                  <?php endif;?>
+                <?php endforeach;?>
+            <?php endif?>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
       </form>
     </div>
   </div>
