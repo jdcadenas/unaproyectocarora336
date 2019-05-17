@@ -38,16 +38,18 @@ class Ventas extends CI_Controller {
 		$fechainicio = $this->input->post('fechainicio');
 		$fechafin = $this->input->post('fechafin');
 		if ($this->input->post('buscar')) {
-			$ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
+			$ventas = $this->Ventas_model->getVentasByDateVendedor($fechainicio, $fechafin, $vendedor);
+
 		} else {
 			$ventas = $this->Ventas_model->getventas();
 		}
-
+		$ide = $vendedor;
 		$data = array(
 			'ide' => $ide,
 			'ventas' => $ventas,
 			'fechainicio' => $fechainicio,
 			'fechafin' => $fechafin,
+
 			'vendedores' => $this->Empleados_model->getEmpleadosVendedores(),
 
 		);

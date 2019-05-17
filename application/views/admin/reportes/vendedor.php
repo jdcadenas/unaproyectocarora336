@@ -17,7 +17,7 @@
           <div class="col-md-4">
             <div class="btn-group ">
               <input type="submit" class="btn btn-primary" value="Buscar" name="buscar" >
-              <a href="<?php echo base_url(); ?>reportes/ventas" class="btn btn-danger" title="">Restablecer</a>
+              <a href="<?php echo base_url(); ?>reportes/ventas/vendedor" class="btn btn-danger" title="">Restablecer</a>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
             <?php if (!empty($vendedores)): ?>
                <?php foreach ($vendedores as $vendedor): ?>
                   <?php if ($vendedor->id_empleado == $ide): ?>
-                      <option value="<?php echo $vendedor->id ?>" selected>
+                      <option value="<?php echo $vendedor->id_empleado ?>" selected>
                           <?php echo $vendedor->id_empleado . 'Sucursal ' . $vendedor->sucursal . ' Nombre: ' . $vendedor->nombre ?>
                       </option>
                   <?php else: ?>
