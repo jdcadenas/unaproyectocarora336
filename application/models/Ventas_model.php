@@ -3,6 +3,7 @@
 }
 
 class Ventas_model extends CI_Model {
+
 	public function getVentas() {
 /*select v.*,e.*,s.* from ventas v
 join empleados e on v.empleado_id = e.id_empleado
@@ -47,6 +48,24 @@ ORDER BY `v`.`id_venta` DESC */
 		}
 	}
 	public function getVentasByDateVendedor($fechainicio, $fechafin, $vendedor) {
+		$this->db->select("v.*,e.nombre as vendedor,e.id_empleado,s.nombre sucursal");
+		$this->db->from('ventas v');
+		$this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
+		$this->db->join('sucursales s', 's.id = e.sucursal_id');
+		$this->db->where('v.fecha_venta >=', $fechainicio);
+		$this->db->where('v.fecha_venta <=', $fechafin);
+		$this->db->where('e.id_empleado', $vendedor);
+		$resultados = $this->db->get();
+
+		if ($resultados->num_rows() > 0) {
+			return $resultados->result();
+		} else {
+			return false;
+		}
+
+	}
+
+	public function getProductosHistorico($fechainicio, $fechafin, $sucursal, $producto, $vendedor) {
 		$this->db->select("v.*,e.nombre as vendedor,e.id_empleado,s.nombre sucursal");
 		$this->db->from('ventas v');
 		$this->db->join('empleados e', 'v.empleado_id = e.id_empleado');

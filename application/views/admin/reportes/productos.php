@@ -1,6 +1,4 @@
-<div class="box box-solid">
-  <div class="box-body">
-    <div class="row">
+<div class="row">
       <form action="<?php echo current_url(); ?>" method="post" accept-charset="utf-8" class="form-horizontal">
         <div class="form-group">
           <label for="" class="col-md-1 control-label">Desde</label>
@@ -11,17 +9,86 @@
           <div class="col-md-3">
             <input type="date" class="form-control" name="fechafin" value="<?php echo !empty($fechafin) ? $fechafin : ''; ?>" >
           </div>
-          <div class="col-md-4">
-            <div class="btn-group ">
-              <input type="submit" class="btn btn-primary" value="Buscar" name="buscar" >
-              <a href="<?php echo base_url(); ?>reportes/ventas" class="btn btn-danger" title="">Restablecer</a>
-            </div>
-          </div>
         </div>
-      </form>
+</div>
+<div class="row">
+<div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group ">
+      <select class="form-control"name="productoselect" id="productoselect">
+        <option value="0">Seleccione el Producto ...</option>
+            <?php if (!empty($productos)): ?>
+               <?php foreach ($productos as $producto): ?>
+                  <?php if ($producto->id_producto == $idp): ?>
+                      <option value="<?php echo $producto->id_producto ?>" selected>
+                          <?php echo $producto->id_producto . 'Sucursal ' . $producto->sucursal . ' Nombre: ' . $producto->nombre ?>
+                      </option>
+                  <?php else: ?>
+                      <option value="<?php echo $producto->id_producto ?>" >
+                          <?php echo $producto->id_producto . 'Sucursal ' . $producto->sucursal . ' Nombre: ' . $producto->nombre ?>
+                      </option>
+                  <?php endif;?>
+                <?php endforeach;?>
+            <?php endif?>
+      </select>
+    </div>
+
+</div>
+
+<div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group">
+      <select class="form-control"name="sucursalproductos" id="sucursalproductos">
+        <option value="0">Seleccione la sucursal ...</option>
+            <?php if (!empty($sucursales)): ?>
+               <?php foreach ($sucursales as $sucursal): ?>
+                  <?php if ($sucursal->id == $ids): ?>
+                      <option value="<?php echo $sucursal->id ?>" selected>
+                          <?php echo $sucursal->id . ' Nombre: ' . $sucursal->nombre ?>
+                      </option>
+                  <?php else: ?>
+                      <option value="<?php echo $sucursal->id ?>" >
+                          <?php echo $sucursal->id . ' Nombre: ' . $sucursal->nombre ?>
+                      </option>
+                  <?php endif;?>
+                <?php endforeach;?>
+            <?php endif?>
+      </select>
+    </div>
+  </div>
+
+<div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group ">
+      <select class="form-control"name="repovendedorselect" id="repovendedorselect">
+        <option value="0">Seleccione el vendedor ...</option>
+            <?php if (!empty($vendedores)): ?>
+               <?php foreach ($vendedores as $vendedor): ?>
+                  <?php if ($vendedor->id_empleado == $ide): ?>
+                      <option value="<?php echo $vendedor->id_empleado ?>" selected>
+                          <?php echo $vendedor->id_empleado . 'Sucursal ' . $vendedor->sucursal . ' Nombre: ' . $vendedor->nombre ?>
+                      </option>
+                  <?php else: ?>
+                      <option value="<?php echo $vendedor->id_empleado ?>" >
+                          <?php echo $vendedor->id_empleado . 'Sucursal ' . $vendedor->sucursal . ' Nombre: ' . $vendedor->nombre ?>
+                      </option>
+                  <?php endif;?>
+                <?php endforeach;?>
+            <?php endif?>
+      </select>
     </div>
   </div>
 </div>
+  <div class="row">
+    <div class="col-md-12">
+        <div class="btn-group ">
+          <input type="submit" class="btn btn-primary" value="Buscar" name="buscar" >
+          <a href="<?php echo base_url(); ?>reportes/ventas/vendedor" class="btn btn-danger" title="">Restablecer</a>
+        </div>
+    </div>
+  </div>
+</form>
+</div>
+
+
+
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_content">

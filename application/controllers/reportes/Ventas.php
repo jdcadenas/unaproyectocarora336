@@ -8,6 +8,9 @@ class Ventas extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Ventas_model');
 		$this->load->model('Empleados_model');
+		$this->load->model('Productos_model');
+		$this->load->model('Sucursales_model');
+
 	}
 
 	public function index() {
@@ -85,18 +88,31 @@ class Ventas extends CI_Controller {
 		$this->template->render();
 	}
 	public function productos() {
+//reporte historico de productos
 		$fechainicio = $this->input->post('fechainicio');
 		$fechafin = $this->input->post('fechafin');
+		$sucursal = $this->input->post('sucursalproductos');
+		$producto = $this->input->post('productoselect');
+		$vendedor = $this->input->post('repovendedorselect');
+
 		if ($this->input->post('buscar')) {
-			$ventas = $this->Ventas_model->getVentasByDate($fechainicio, $fechafin);
+
+			$ventas = $this->Ventas_model->getProductosHistorico($fechainicio, $fechafin, $sucursal, $producto, $vendedor);
 		} else {
 			$ventas = $this->Ventas_model->getventas();
 		}
 
 		$data = array(
+			'ids' => $sucursal,
+			'idp' => $producto,
+			'ide' => $vendedor,
+
 			'ventas' => $ventas,
 			'fechainicio' => $fechainicio,
 			'fechafin' => $fechafin,
+			'vendedores' => $this->Empleados_model->getEmpleadosVendedores(),
+			'sucursales' => $this->Sucursales_model->getSucursales(),
+			'productos' => $this->Productos_model->getProductos(),
 
 		);
 		$this->template->write_view('sidenavs', 'template/default_sidenavs', true);
