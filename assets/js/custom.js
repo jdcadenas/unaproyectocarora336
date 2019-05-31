@@ -1032,7 +1032,7 @@ $(document).ready(function() {
         infoempleado = empleado.split("*");
         $('#id_empleado').val(infoempleado[0]);
         $('#empleado').val(infoempleado[2] + ' ' + infoempleado[3]);
-        $("#modal-default").modal("hide");
+        $("#modal-default-emple").modal("hide");
         return false;
     });
     //boton para buscar sucursal
@@ -1042,6 +1042,27 @@ $(document).ready(function() {
         $('#id_sucursal').val(infosucursal[0]);
         $('#sucursal').val(infosucursal[1] + " Ubicación: " + infosucursal[2]);
         $("#modal-default-sucursal").modal("hide");
+ 
+        $.ajax({
+            url: base_url + "empleados/viewempleadoxsucursal",
+            type: 'POST',
+            dataType: 'html',
+            data: {
+                id: infosucursal[0]
+            },
+        }).done(function(data) {
+            console.log("success");
+            $("#modal-default-emple .modal-body-emple").html(data);
+        }).fail(function() {
+            console.log("error");
+        }).always(function() {
+            console.log("complete");
+        });
+
+         $("#modal-default-emple").modal("show");
+
+
+
         return false;
     });
     //autocompletar producto

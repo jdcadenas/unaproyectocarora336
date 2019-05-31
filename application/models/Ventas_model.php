@@ -72,7 +72,7 @@ ORDER BY `v`.`id_venta` DESC */
 		$this->db->join('sucursales s', 's.id = e.sucursal_id');
 		$this->db->where('v.fecha_venta >=', $fechainicio);
 		$this->db->where('v.fecha_venta <=', $fechafin);
-		$this->db->where('e.id_empleado', $vendedor);
+
 		$resultados = $this->db->get();
 
 		if ($resultados->num_rows() > 0) {
@@ -84,24 +84,24 @@ ORDER BY `v`.`id_venta` DESC */
 	}
 
 	public function getproductos($valor, $sucursal) {
-/*select p.id_producto, p.codigo, p.nombre as label,
-p.precio, p.cantidad, l.nombre_linea as lnombre, s.id as idsucursal,
-s.nombre as sucursal
-from productos as p
-join lineas l on p.linea = l.id_linea
-join almacen a on p.id_producto = a.producto_id
-join sucursales s on s.id = a.sucursal_id
-where p.estado = "1" and a.sucursal_id='1'
-and p.nombre like 'pin%' */
+		/*select p.id_producto, p.codigo, p.nombre as label,
+				p.precio, p.cantidad, l.nombre_linea as lnombre, s.id as idsucursal,
+				s.nombre as sucursal
+				from productos as p
+				join lineas l on p.linea = l.id_linea
+				join almacen a on p.id_producto = a.producto_id
+				join sucursales s on s.id = a.sucursal_id
+				where p.estado = "1" and a.sucursal_id='1'
+				and p.nombre like 'pin%' */
 		$this->db->select("
-p.id_producto,p.codigo,
-p.nombre as label,
-p.precio,
-p.cantidad,
-l.nombre_linea as lnombre,
-s.id as idsucursal,
-s.nombre as sucursal
-");
+				p.id_producto,p.codigo,
+				p.nombre as label,
+				p.precio,
+				p.cantidad,
+				l.nombre_linea as lnombre,
+				s.id as idsucursal,
+				s.nombre as sucursal
+				");
 		$this->db->from('productos p');
 		$this->db->join('lineas l', 'p.linea = l.id_linea');
 		$this->db->join('almacen a', 'p.id_producto = a.producto_id');
@@ -115,13 +115,13 @@ s.nombre as sucursal
 	}
 	public function getVentemplesucu($id) {
 		$this->db->select("
-v.*,e.nombre as vendedor,
-e.apellido as apellidovendedor,
-e.correo,e.telefono,
-e.cedula,
-s.nombre as sucursal,
-s.ubicacion
-");
+				v.*,e.nombre as vendedor,
+				e.apellido as apellidovendedor,
+				e.correo,e.telefono,
+				e.cedula,
+				s.nombre as sucursal,
+				s.ubicacion
+				");
 		$this->db->from('ventas v');
 		$this->db->join('empleados e', 'v.empleado_id = e.id_empleado');
 		$this->db->join('sucursales s', 's.id =  v.sucursal_id');

@@ -29,6 +29,7 @@ class Ventas extends CI_Controller {
 	}
 
 	public function add() {
+
 		$data = array(
 			'empleados' => $this->Empleados_model->getEmpleados(),
 			'sucursales' => $this->Sucursales_model->getSucursales(),
@@ -110,6 +111,7 @@ class Ventas extends CI_Controller {
 
 		$this->Almacenes_model->update($id_sucursal, $idproducto, $data);
 	}
+
 	public function view() {
 		$idventa = $this->input->post('id');
 		$data = array(

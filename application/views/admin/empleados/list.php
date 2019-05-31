@@ -24,24 +24,24 @@
       </thead>
       <tbody>
         <?php if (!empty($empleados)): ?>
-        <?php foreach ($empleados as $empleado): ?>
-        <td class=" "><?php echo $empleado->id_empleado; ?></td>
-        <td class=" "><?php echo $empleado->cedula; ?></td>
-        <td class=" "><?php echo $empleado->nombre; ?></td>
-        <td class=" "><?php echo $empleado->apellido; ?></td>
-        <td class=" "><?php echo $empleado->telefono; ?></td>
-        <td class=" "><?php echo $empleado->correo; ?></td>
-         <td class=" "><?php echo $empleado->rol; ?></td>
-          <td class=" "><?php echo $empleado->sucursal; ?></td>
-        <td class=" last">
-          <div class="btn-group">
-            <button type="button" class="btn btn-info btn-view-emple" data-toggle="modal" data-target=".bs-example-modal-lg" value="<?php echo $empleado->id_empleado ?>"><span class="fa fa-search"></span></button>
-            <a href="<?php echo base_url() ?>empleados/edit/<?php echo $empleado->id_empleado; ?>" title="" class="btn btn-warning "><span class="fa fa-pencil"></span></a>
-            <a href="<?php echo base_url() ?>empleados/delete/<?php echo $empleado->id_empleado; ?>" title="" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
-          </div>
-        </td>
-      </tr>
-      <?php endforeach?>
+            <?php foreach ($empleados as $empleado): ?>
+            <td class=" "><?php echo $empleado->id_empleado; ?></td>
+            <td class=" "><?php echo $empleado->cedula; ?></td>
+            <td class=" "><?php echo $empleado->nombre; ?></td>
+            <td class=" "><?php echo $empleado->apellido; ?></td>
+            <td class=" "><?php echo $empleado->telefono; ?></td>
+            <td class=" "><?php echo $empleado->correo; ?></td>
+             <td class=" "><?php echo $empleado->rol; ?></td>
+              <td class=" "><?php echo $empleado->sucursal; ?></td>
+            <td class=" last">
+              <div class="btn-group">
+                <button type="button" class="btn btn-info btn-view-emple" data-toggle="modal" data-target=".bs-example-modal-lg" value="<?php echo $empleado->id_empleado ?>"><span class="fa fa-search"></span></button>
+                <a href="<?php echo base_url() ?>empleados/edit/<?php echo $empleado->id_empleado; ?>" title="" class="btn btn-warning "><span class="fa fa-pencil"></span></a>
+                <a href="<?php echo base_url() ?>empleados/delete/<?php echo $empleado->id_empleado; ?>" title="" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+              </div>
+            </td>
+          </tr>
+          <?php endforeach?>
       <?php endif?>
     </tbody>
   </table>

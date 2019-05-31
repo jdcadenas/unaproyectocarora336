@@ -29,7 +29,7 @@
 
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default-sucursal" >
-                    <span class="fa fa-search"></span> Buscar Sucursal</button>
+                    <span class="fa fa-search"></span> Buscar Empleado x Sucursal</button>
                 </span>
               </div><!-- /input-group -->
             </div>
@@ -47,9 +47,7 @@
 
                 <input type="text" class="form-control" name="empleado" id="empleado" readonly="true">
 
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default" ><span class="fa fa-search"></span> Buscar</button>
-                </span>
+
               </div><!-- /input-group -->
             </div>
             <div class="col-md-3">
@@ -123,7 +121,7 @@
 
 <!-- /.content-wrapper -->
 
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="modal-default-emple">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -131,30 +129,8 @@
           <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Lista de Empleados</h4>
       </div>
-      <div class="modal-body">
-        <table id="datatable-responsive" class="table table-bordered table-striped table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Cédula</th>
-              <th>Nombre</th>
-              <th>Opcion</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if (!empty($empleados)): ?>
-              <?php foreach ($empleados as $empleado): ?>
-                <tr>
-                  <?php $dataempleado = $empleado->id_empleado . "*" . $empleado->cedula . "*" . $empleado->nombre . "*" . $empleado->apellido . "*" . $empleado->telefono . "*" . $empleado->correo . "*" . $empleado->rol_id . "*" . $empleado->sucursal_id?>
-                  <td><?php echo $empleado->id_empleado ?></td>
-                  <td><?php echo $empleado->cedula ?></td>
-                  <td><?php echo $empleado->nombre . " " . $empleado->apellido ?></td>
-                  <td><button type="button" class="btn btn-success btn-check" value="<?php echo $dataempleado ?>"><span class="fa fa-check"></span></button></td>
-                </tr>
-              <?php endforeach?>
-            <?php endif?>
-          </tbody>
-        </table>
+      <div class="modal-body-emple">
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
@@ -208,6 +184,7 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
 <script>
   //agregado personal
   var base_url = "<?php echo base_url(); ?>"
